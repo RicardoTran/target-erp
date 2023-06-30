@@ -15,8 +15,8 @@
   "customer_type",
   "customer_name",
   "territory",
-  "customer_group",
   "customer_category",
+  "customer_group",
   "column_break0",
   "gender",
   "salutation",
@@ -204,6 +204,7 @@
    "reqd": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "tax_id",
    "fieldtype": "Data",
    "label": "Tax ID"
@@ -586,6 +587,7 @@
    "label": "Company Type"
   },
   {
+   "allow_in_quick_entry": 1,
    "default": "M\u1edbi",
    "fieldname": "customer_category",
    "fieldtype": "Select",
@@ -629,7 +631,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-06-30 11:02:42.107989",
+ "modified": "2023-06-30 13:30:02.284259",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
