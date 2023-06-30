@@ -631,7 +631,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-06-30 13:30:02.284259",
+ "modified": "2023-06-30 16:38:02.285490",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
@@ -711,7 +711,7 @@
   }
  ],
  "quick_entry": 1,
- "search_fields": "customer_name,customer_group,territory, mobile_no,primary_address",
+ "search_fields": "customer_name,territory",
  "show_name_in_global_search": 1,
  "show_title_field_in_link": 1,
  "sort_field": "modified",

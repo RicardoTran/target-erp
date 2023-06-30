@@ -15,13 +15,19 @@
   "quotation_to",
   "party_name",
   "customer_name",
+  "year_audit",
   "column_break_7",
-  "transaction_date",
-  "valid_till",
+  "represent_name",
+  "position",
+  "tax_include",
   "column_break1",
   "order_type",
   "company",
+  "transaction_date",
+  "valid_till",
   "amended_from",
+  "section_break_cpe4l",
+  "task_description",
   "currency_and_price_list",
   "currency",
   "conversion_rate",
@@ -155,7 +161,7 @@
    "no_copy": 1,
    "oldfieldname": "naming_series",
    "oldfieldtype": "Select",
-   "options": "SAL-QTN-.YYYY.-",
+   "options": ".####.-.MM.-.YYYY./BG-TARGET",
    "print_hide": 1,
    "reqd": 1,
    "set_only_once": 1
@@ -252,7 +258,7 @@
    "label": "Order Type",
    "oldfieldname": "order_type",
    "oldfieldtype": "Select",
-   "options": "\nSales\nMaintenance\nShopping Cart",
+   "options": "Sales\nMaintenance\nShopping Cart",
    "print_hide": 1,
    "reqd": 1
   },
@@ -532,6 +538,7 @@
    "hide_border": 1
   },
   {
+   "default": "Vietnam Tax - TC",
    "fieldname": "taxes_and_charges",
    "fieldtype": "Link",
    "label": "Sales Taxes and Charges Template",
@@ -971,6 +978,7 @@
   {
    "fieldname": "scan_barcode",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Scan Barcode",
    "options": "Barcode"
   },
@@ -1066,13 +1074,43 @@
    "fieldname": "named_place",
    "fieldtype": "Data",
    "label": "Named Place"
+  },
+  {
+   "fieldname": "tax_include",
+   "fieldtype": "Select",
+   "label": "Tax Include",
+   "options": "Bao g\u1ed3m\nCh\u01b0a bao g\u1ed3m"
+  },
+  {
+   "fieldname": "represent_name",
+   "fieldtype": "Data",
+   "label": "Represent Name"
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Data",
+   "label": "Position"
+  },
+  {
+   "fieldname": "year_audit",
+   "fieldtype": "Int",
+   "label": "Year Audit"
+  },
+  {
+   "fieldname": "task_description",
+   "fieldtype": "Small Text",
+   "label": "Task Description"
+  },
+  {
+   "fieldname": "section_break_cpe4l",
+   "fieldtype": "Section Break"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-04-14 16:50:44.550098",
+ "modified": "2023-06-30 20:11:29.168143",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
