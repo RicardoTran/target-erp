@@ -516,6 +516,7 @@
   {
    "fieldname": "tax_category",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Tax Category",
    "options": "Tax Category",
    "print_hide": 1
@@ -527,6 +528,7 @@
   {
    "fieldname": "shipping_rule",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Shipping Rule",
    "oldfieldtype": "Button",
    "options": "Shipping Rule",
@@ -668,6 +670,7 @@
   {
    "fieldname": "base_rounding_adjustment",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Rounding Adjustment (Company Currency)",
    "no_copy": 1,
    "options": "Company:company:default_currency",
@@ -687,6 +690,7 @@
   {
    "fieldname": "base_rounded_total",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Rounded Total (Company Currency)",
    "oldfieldname": "rounded_total",
    "oldfieldtype": "Currency",
@@ -716,6 +720,7 @@
   {
    "fieldname": "rounding_adjustment",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Rounding Adjustment",
    "no_copy": 1,
    "options": "currency",
@@ -726,6 +731,7 @@
    "bold": 1,
    "fieldname": "rounded_total",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Rounded Total",
    "oldfieldname": "rounded_total_export",
    "oldfieldtype": "Currency",
@@ -1065,6 +1071,7 @@
   {
    "fieldname": "incoterm",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Incoterm",
    "options": "Incoterm"
   },
@@ -1109,7 +1116,7 @@
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-06-30 20:25:29.931909",
+ "modified": "2023-06-30 22:46:31.894811",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
