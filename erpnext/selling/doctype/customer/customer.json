@@ -12,15 +12,24 @@
  "field_order": [
   "basic_info",
   "naming_series",
-  "salutation",
-  "customer_name",
   "customer_type",
-  "customer_group",
-  "column_break0",
+  "customer_name",
   "territory",
+  "customer_group",
+  "customer_category",
+  "column_break0",
   "gender",
+  "salutation",
+  "full_name",
+  "company_name",
+  "company_type",
+  "company_address",
+  "total_year_audited",
+  "first_year_audit",
+  "section_break_yj0sz",
   "lead_name",
   "opportunity_name",
+  "column_break_jqp4v",
   "account_manager",
   "image",
   "defaults_tab",
@@ -99,6 +108,7 @@
    "set_only_once": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "depends_on": "eval:doc.customer_type!='Company'",
    "fieldname": "salutation",
    "fieldtype": "Link",
@@ -118,6 +128,7 @@
    "unique": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "depends_on": "eval:doc.customer_type != 'Company'",
    "fieldname": "gender",
    "fieldtype": "Link",
@@ -552,6 +563,59 @@
   {
    "fieldname": "column_break_54",
    "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.customer_type == 'Company'",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.customer_type == 'Company'",
+   "fieldname": "company_address",
+   "fieldtype": "Small Text",
+   "label": "Company Address"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.customer_type == 'Company'",
+   "fieldname": "company_type",
+   "fieldtype": "Data",
+   "label": "Company Type"
+  },
+  {
+   "default": "M\u1edbi",
+   "fieldname": "customer_category",
+   "fieldtype": "Select",
+   "label": "Customer Category",
+   "options": "M\u1edbi\nC\u0169"
+  },
+  {
+   "fieldname": "first_year_audit",
+   "fieldtype": "Int",
+   "label": "First Year Audit"
+  },
+  {
+   "fieldname": "total_year_audited",
+   "fieldtype": "Int",
+   "label": "Total Year Audited"
+  },
+  {
+   "fieldname": "section_break_yj0sz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_jqp4v",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.customer_type!='Company'",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
   }
  ],
  "icon": "fa fa-user",
@@ -565,7 +629,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-06-30 09:43:16.938111",
+ "modified": "2023-06-30 10:49:34.925587",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
