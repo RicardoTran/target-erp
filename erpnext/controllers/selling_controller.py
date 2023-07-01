@@ -132,10 +132,17 @@ class SellingController(StockController):
 				self.base_grand_total if self.is_rounded_total_disabled() else self.base_rounded_total
 			)
 			self.base_in_words = money_in_words(base_amount, self.company_currency)
+			# vn dong
+			str1 = self.base_in_words.replace ("VND ","")
+			str2 = str1.replace("chẵn","đồng chẵn")
+			self.base_in_words = str2.capitalize()
 
 		if self.meta.get_field("in_words"):
 			amount = abs(self.grand_total if self.is_rounded_total_disabled() else self.rounded_total)
 			self.in_words = money_in_words(amount, self.currency)
+			str3 = self.in_words.replace ("VND ","")
+			str4 = str3.replace("chẵn","đồng chẵn")
+			self.in_words = str4.capitalize()
 
 	def calculate_commission(self):
 		if not self.meta.get_field("commission_rate") or self.docstatus.is_submitted():
