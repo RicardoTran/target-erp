@@ -120,7 +120,7 @@
    "fieldname": "customer_name",
    "fieldtype": "Data",
    "in_global_search": 1,
-   "label": "Customer Name",
+   "label": "Customer Code",
    "no_copy": 1,
    "oldfieldname": "customer_name",
    "oldfieldtype": "Data",
@@ -630,7 +630,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-07-03 20:15:55.735166",
+ "modified": "2023-07-03 22:26:11.592253",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
