@@ -58,7 +58,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "For reference",
    "fieldname": "territory_manager",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -123,7 +122,7 @@
  "idx": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2022-12-24 11:16:39.964956",
+ "modified": "2023-07-03 18:57:44.423349",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Territory",
@@ -186,6 +185,7 @@
    "share": 1
   }
  ],
+ "quick_entry": 1,
  "search_fields": "parent_territory,territory_manager",
  "show_name_in_global_search": 1,
  "sort_field": "modified",

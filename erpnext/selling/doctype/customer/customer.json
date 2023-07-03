@@ -16,7 +16,7 @@
   "customer_name",
   "territory",
   "customer_category",
-  "customer_group",
+  "industry",
   "column_break0",
   "gender",
   "salutation",
@@ -44,7 +44,7 @@
   "companies",
   "more_info",
   "market_segment",
-  "industry",
+  "customer_group",
   "customer_pos_id",
   "website",
   "language",
@@ -183,8 +183,6 @@
   {
    "fieldname": "customer_group",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Customer Group",
    "oldfieldname": "customer_group",
    "oldfieldtype": "Link",
@@ -583,8 +581,9 @@
    "allow_in_quick_entry": 1,
    "depends_on": "eval:doc.customer_type == 'Company'",
    "fieldname": "company_type",
-   "fieldtype": "Data",
-   "label": "Company Type"
+   "fieldtype": "Link",
+   "label": "Company Type",
+   "options": "Company Type"
   },
   {
    "allow_in_quick_entry": 1,
@@ -631,7 +630,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-06-30 16:38:02.285490",
+ "modified": "2023-07-03 19:05:44.904947",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
