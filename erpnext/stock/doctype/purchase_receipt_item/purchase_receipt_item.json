@@ -206,6 +206,7 @@
    "fieldname": "received_qty",
    "fieldtype": "Float",
    "label": "Received Quantity",
+   "no_copy": 1,
    "oldfieldname": "received_qty",
    "oldfieldtype": "Currency",
    "print_hide": 1,

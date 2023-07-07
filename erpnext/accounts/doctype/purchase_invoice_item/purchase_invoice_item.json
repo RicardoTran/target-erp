@@ -176,6 +176,7 @@
    "fieldname": "received_qty",
    "fieldtype": "Float",
    "label": "Received Qty",
+   "no_copy": 1,
    "read_only": 1
   },
   {
