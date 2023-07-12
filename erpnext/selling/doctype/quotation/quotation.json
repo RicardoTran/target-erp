@@ -15,7 +15,6 @@
   "quotation_to",
   "party_name",
   "customer_name",
-  "year_audit",
   "column_break_7",
   "represent_name",
   "position",
@@ -1097,11 +1096,6 @@
    "label": "Position"
   },
   {
-   "fieldname": "year_audit",
-   "fieldtype": "Int",
-   "label": "Year Audit"
-  },
-  {
    "fieldname": "task_description",
    "fieldtype": "Small Text",
    "label": "Task Description"
@@ -1115,7 +1109,7 @@
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-08 08:35:42.054808",
+ "modified": "2023-07-10 15:29:35.974849",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
