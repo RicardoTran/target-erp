@@ -89,6 +89,7 @@
   "billing_address_section",
   "customer_address",
   "address_display",
+  "phone_number_quote",
   "col_break98",
   "contact_person",
   "contact_display",
@@ -1103,13 +1104,20 @@
   {
    "fieldname": "section_break_cpe4l",
    "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "company.phone_no",
+   "fetch_if_empty": 1,
+   "fieldname": "phone_number_quote",
+   "fieldtype": "Data",
+   "label": "Phone number quote"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-10 15:29:35.974849",
+ "modified": "2023-07-17 14:50:00.543880",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
