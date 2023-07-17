@@ -16,6 +16,9 @@
   "buying",
   "section_break_7",
   "terms",
+  "terms_en",
+  "terms_cn",
+  "terms_vi_cn",
   "terms_and_conditions_help"
  ],
  "fields": [
@@ -41,6 +44,7 @@
    "fieldtype": "Text Editor",
    "in_global_search": 1,
    "label": "Terms and Conditions",
+   "max_height": "150px",
    "oldfieldname": "terms",
    "oldfieldtype": "Text Editor"
   },
@@ -72,12 +76,30 @@
   {
    "fieldname": "section_break_7",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "terms_en",
+   "fieldtype": "Text",
+   "label": "Terms and Conditions English",
+   "max_height": "150px"
+  },
+  {
+   "fieldname": "terms_cn",
+   "fieldtype": "Text",
+   "label": "Terms and Conditions Chinese",
+   "max_height": "150px"
+  },
+  {
+   "fieldname": "terms_vi_cn",
+   "fieldtype": "Text",
+   "label": "Terms and Conditions Vietnamese-Chinese",
+   "max_height": "150px"
   }
  ],
  "icon": "icon-legal",
  "idx": 1,
  "links": [],
- "modified": "2023-02-01 14:33:39.246532",
+ "modified": "2023-07-17 14:00:01.739707",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Terms and Conditions",
