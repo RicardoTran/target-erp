@@ -12,16 +12,26 @@
  "field_order": [
   "basic_info",
   "naming_series",
-  "salutation",
-  "customer_name",
   "customer_type",
-  "customer_group",
-  "column_break0",
+  "customer_name",
   "territory",
+  "customer_category",
+  "industry",
+  "column_break0",
   "gender",
-  "lead_name",
-  "opportunity_name",
-  "account_manager",
+  "salutation",
+  "full_name",
+  "company_name",
+  "company_type",
+  "company_address",
+  "total_year_audited",
+  "first_year_audit",
+  "section_break_yj0sz",
+  "company_name_en",
+  "company_address_en",
+  "column_break_jqp4v",
+  "company_name_cn",
+  "company_address_cn",
   "image",
   "defaults_tab",
   "default_price_list",
@@ -34,13 +44,16 @@
   "column_break_70",
   "companies",
   "more_info",
+  "lead_name",
+  "opportunity_name",
   "market_segment",
-  "industry",
+  "customer_group",
   "customer_pos_id",
   "website",
   "language",
   "column_break_45",
   "customer_details",
+  "account_manager",
   "dashboard_tab",
   "contact_and_address_tab",
   "address_contacts",
@@ -48,12 +61,12 @@
   "column_break1",
   "contact_html",
   "primary_address_and_contact_detail",
+  "customer_primary_address",
+  "primary_address",
+  "column_break_26",
   "customer_primary_contact",
   "mobile_no",
   "email_id",
-  "column_break_26",
-  "customer_primary_address",
-  "primary_address",
   "tax_tab",
   "taxation_section",
   "tax_id",
@@ -95,10 +108,11 @@
    "fieldtype": "Select",
    "label": "Series",
    "no_copy": 1,
-   "options": "CUST-.YYYY.-",
+   "options": "KH-.",
    "set_only_once": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "depends_on": "eval:doc.customer_type!='Company'",
    "fieldname": "salutation",
    "fieldtype": "Link",
@@ -110,14 +124,15 @@
    "fieldname": "customer_name",
    "fieldtype": "Data",
    "in_global_search": 1,
-   "label": "Customer Name",
+   "label": "Customer Code",
    "no_copy": 1,
    "oldfieldname": "customer_name",
    "oldfieldtype": "Data",
    "reqd": 1,
-   "search_index": 1
+   "unique": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "depends_on": "eval:doc.customer_type != 'Company'",
    "fieldname": "gender",
    "fieldtype": "Link",
@@ -172,13 +187,10 @@
   {
    "fieldname": "customer_group",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Customer Group",
    "oldfieldname": "customer_group",
    "oldfieldtype": "Link",
    "options": "Customer Group",
-   "reqd": 1,
    "search_index": 1
   },
   {
@@ -194,6 +206,7 @@
    "reqd": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "tax_id",
    "fieldtype": "Data",
    "label": "Tax ID"
@@ -296,7 +309,6 @@
    "label": "Primary Address and Contact"
   },
   {
-   "description": "Reselect, if the chosen contact is edited after save",
    "fieldname": "customer_primary_contact",
    "fieldtype": "Link",
    "label": "Customer Primary Contact",
@@ -319,7 +331,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "Reselect, if the chosen address is edited after save",
    "fieldname": "customer_primary_address",
    "fieldtype": "Link",
    "label": "Customer Primary Address",
@@ -485,6 +496,7 @@
    "label": "Contact & Address"
   },
   {
+   "collapsible": 1,
    "fieldname": "defaults_tab",
    "fieldtype": "Section Break",
    "label": "Defaults"
@@ -555,6 +567,85 @@
   {
    "fieldname": "column_break_54",
    "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.customer_type == 'Company'",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.customer_type == 'Company'",
+   "fieldname": "company_address",
+   "fieldtype": "Small Text",
+   "label": "Company Address",
+   "max_height": "72px"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.customer_type == 'Company'",
+   "fieldname": "company_type",
+   "fieldtype": "Link",
+   "label": "Company Type",
+   "options": "Company Type"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "default": "M\u1edbi",
+   "fieldname": "customer_category",
+   "fieldtype": "Select",
+   "label": "Customer Category",
+   "options": "M\u1edbi\nC\u0169"
+  },
+  {
+   "fieldname": "first_year_audit",
+   "fieldtype": "Int",
+   "label": "First Year Audit"
+  },
+  {
+   "fieldname": "total_year_audited",
+   "fieldtype": "Int",
+   "label": "Total Year Audited"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_yj0sz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_jqp4v",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.customer_type!='Company'",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "company_name_en",
+   "fieldtype": "Data",
+   "label": "Company Name English"
+  },
+  {
+   "fieldname": "company_address_en",
+   "fieldtype": "Small Text",
+   "label": "Company Address English",
+   "max_height": "72px"
+  },
+  {
+   "fieldname": "company_name_cn",
+   "fieldtype": "Data",
+   "label": "Company Name Chinese"
+  },
+  {
+   "fieldname": "company_address_cn",
+   "fieldtype": "Small Text",
+   "label": "Company Address Chinese",
+   "max_height": "72px"
   }
  ],
  "icon": "fa fa-user",
@@ -568,7 +659,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-05-09 15:38:40.255193",
+ "modified": "2023-07-13 16:28:44.896624",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
@@ -648,11 +739,12 @@
   }
  ],
  "quick_entry": 1,
- "search_fields": "customer_name,customer_group,territory, mobile_no,primary_address",
+ "search_fields": "customer_name,territory",
  "show_name_in_global_search": 1,
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "ASC",
  "states": [],
- "title_field": "customer_name",
+ "title_field": "company_name",
  "track_changes": 1
 }
