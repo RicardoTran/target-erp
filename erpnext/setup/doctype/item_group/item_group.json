@@ -50,6 +50,7 @@
    "oldfieldname": "item_group_name",
    "oldfieldtype": "Data",
    "reqd": 1,
+   "translatable": 1,
    "unique": 1
   },
   {
@@ -233,7 +234,7 @@
  "is_tree": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2023-01-05 12:21:30.458628",
+ "modified": "2023-06-30 16:26:29.679874",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Item Group",

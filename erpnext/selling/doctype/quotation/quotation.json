@@ -16,12 +16,17 @@
   "party_name",
   "customer_name",
   "column_break_7",
-  "transaction_date",
-  "valid_till",
+  "represent_name",
+  "position",
+  "tax_include",
   "column_break1",
   "order_type",
   "company",
+  "transaction_date",
+  "valid_till",
   "amended_from",
+  "section_break_cpe4l",
+  "task_description",
   "currency_and_price_list",
   "currency",
   "conversion_rate",
@@ -84,6 +89,7 @@
   "billing_address_section",
   "customer_address",
   "address_display",
+  "phone_number_quote",
   "col_break98",
   "contact_person",
   "contact_display",
@@ -155,7 +161,7 @@
    "no_copy": 1,
    "oldfieldname": "naming_series",
    "oldfieldtype": "Select",
-   "options": "SAL-QTN-.YYYY.-",
+   "options": ".####.-.MM.-.YYYY./BG-TARGET",
    "print_hide": 1,
    "reqd": 1,
    "set_only_once": 1
@@ -252,7 +258,7 @@
    "label": "Order Type",
    "oldfieldname": "order_type",
    "oldfieldtype": "Select",
-   "options": "\nSales\nMaintenance\nShopping Cart",
+   "options": "Sales\nMaintenance\nShopping Cart",
    "print_hide": 1,
    "reqd": 1
   },
@@ -296,10 +302,8 @@
   {
    "fieldname": "contact_email",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Contact Email",
    "options": "Email",
-   "print_hide": 1,
    "read_only": 1
   },
   {
@@ -510,6 +514,7 @@
   {
    "fieldname": "tax_category",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Tax Category",
    "options": "Tax Category",
    "print_hide": 1
@@ -521,6 +526,7 @@
   {
    "fieldname": "shipping_rule",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Shipping Rule",
    "oldfieldtype": "Button",
    "options": "Shipping Rule",
@@ -662,6 +668,7 @@
   {
    "fieldname": "base_rounding_adjustment",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Rounding Adjustment (Company Currency)",
    "no_copy": 1,
    "options": "Company:company:default_currency",
@@ -681,6 +688,7 @@
   {
    "fieldname": "base_rounded_total",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Rounded Total (Company Currency)",
    "oldfieldname": "rounded_total",
    "oldfieldtype": "Currency",
@@ -710,6 +718,7 @@
   {
    "fieldname": "rounding_adjustment",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Rounding Adjustment",
    "no_copy": 1,
    "options": "currency",
@@ -718,8 +727,10 @@
   },
   {
    "bold": 1,
+   "depends_on": "0 == 1",
    "fieldname": "rounded_total",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Rounded Total",
    "oldfieldname": "rounded_total_export",
    "oldfieldtype": "Currency",
@@ -971,6 +982,7 @@
   {
    "fieldname": "scan_barcode",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Scan Barcode",
    "options": "Barcode"
   },
@@ -1058,6 +1070,7 @@
   {
    "fieldname": "incoterm",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Incoterm",
    "options": "Incoterm"
   },
@@ -1066,13 +1079,45 @@
    "fieldname": "named_place",
    "fieldtype": "Data",
    "label": "Named Place"
+  },
+  {
+   "fieldname": "tax_include",
+   "fieldtype": "Select",
+   "label": "Tax Include",
+   "options": "Bao g\u1ed3m\nCh\u01b0a bao g\u1ed3m"
+  },
+  {
+   "fieldname": "represent_name",
+   "fieldtype": "Data",
+   "label": "Represent Name"
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Data",
+   "label": "Position"
+  },
+  {
+   "fieldname": "task_description",
+   "fieldtype": "Small Text",
+   "label": "Task Description"
+  },
+  {
+   "fieldname": "section_break_cpe4l",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "company.phone_no",
+   "fetch_if_empty": 1,
+   "fieldname": "phone_number_quote",
+   "fieldtype": "Data",
+   "label": "Phone number quote"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-04-14 16:50:44.550098",
+ "modified": "2023-07-17 14:50:00.543880",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
