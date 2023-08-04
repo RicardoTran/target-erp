@@ -701,7 +701,8 @@ def make_contact(args, is_primary_contact=1):
 
 def make_address(args, is_primary_address=1):
 	reqd_fields = []
-	for field in ["city", "country"]:
+	# for field in ["city", "country"]:
+	for field in ["city"]:
 		if not args.get(field):
 			reqd_fields.append("<li>" + field.title() + "</li>")
 
@@ -712,6 +713,9 @@ def make_address(args, is_primary_address=1):
 			title=_("Missing Values Required"),
 		)
 
+	strCountry = args.get("country")
+	if strCountry == "":
+		strCountry = "Vietnam"
 	address = frappe.get_doc(
 		{
 			"doctype": "Address",
@@ -721,7 +725,7 @@ def make_address(args, is_primary_address=1):
 			"city": args.get("city"),
 			"state": args.get("state"),
 			"pincode": args.get("pincode"),
-			"country": args.get("country"),
+			"country": strCountry,
 			"links": [{"link_doctype": args.get("doctype"), "link_name": args.get("name")}],
 		}
 	).insert()
