@@ -8,7 +8,7 @@ from frappe import _, msgprint, qb
 from frappe.model.document import Document
 
 class CustomerUser(Document):
-	def before_save(self):
+	def validate(self):
 		if not frappe.db.exists("User", self.email):
 			frappe.get_doc(dict(
             doctype = "User",
