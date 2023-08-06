@@ -31,7 +31,5 @@ class CustomerUser(Document):
 
 	def on_trash(self):
 		if frappe.db.exists("User", self.email):
-			check = frappe.db.get_value('User', self.email, ['user_type'],as_dict=1)
-			if "Website" in check.user_type:
-				ref_user = frappe.get_doc("User",self.email)
-				ref_user.delete(ignore_permissions=True)
+			ref_user = frappe.get_doc("User",self.email)
+			ref_user.delete(ignore_permissions=True)				
