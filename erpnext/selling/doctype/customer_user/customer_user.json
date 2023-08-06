@@ -1,39 +1,30 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "prompt",
+ "autoname": "hash",
  "creation": "2023-08-04 20:55:32.736767",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "user_id",
-  "column_break_8cwap",
   "full_name",
+  "email",
   "phone",
+  "enabled",
+  "column_break_8cwap",
+  "description",
   "section_break_pzgsv",
-  "company_list"
+  "company_list",
+  "avatar"
  ],
  "fields": [
   {
-   "fieldname": "user_id",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "User ID",
-   "options": "User",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fetch_from": "user_id.full_name",
    "fieldname": "full_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Full Name",
-   "read_only": 1
+   "reqd": 1
   },
   {
    "fieldname": "company_list",
@@ -54,16 +45,48 @@
    "fieldname": "phone",
    "fieldtype": "Data",
    "label": "Phone",
-   "read_only": 1
+   "options": "Phone",
+   "unique": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "ignore_xss_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Email",
+   "options": "Email",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "user_id.full_name",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "avatar",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Avatar"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
   }
  ],
+ "image_field": "avatar",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-04 23:34:20.042910",
+ "modified": "2023-08-06 22:28:38.499884",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer User",
- "naming_rule": "Set by user",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {
@@ -127,7 +150,9 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "full_name"
 }
