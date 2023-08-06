@@ -23,14 +23,14 @@ class CustomerUser(Document):
 		else:
 			frappe.throw(_('Email already exists on the system, please check again!'))
 	def validate(self):
-		if not not frappe.db.exists("User", self.email):
+		if frappe.db.exists("User", self.email):
 			update_user = frappe.get_doc("User",self.email)
 			update_user.first_name = self.full_name
 			update_user.enabled = self.enabled
 			update_user.save(ignore_permissions=True)
 
 	def on_trash(self):
-		if not not frappe.db.exists("User", self.email):
+		if frappe.db.exists("User", self.email):
 			check = frappe.db.get_value('User', self.email, ['user_type'],as_dict=1)
 			if "Website" in check.user_type:
 				ref_user = frappe.get_doc("User",self.email)
