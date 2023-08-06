@@ -8,7 +8,7 @@ from frappe import _, msgprint, qb
 from frappe.model.document import Document
 
 class CustomerUser(Document):
-	def validate(self):
+	def before_insert(self):
 		if not frappe.db.exists("User", self.email):
 			frappe.get_doc(dict(
             doctype = "User",
@@ -21,19 +21,17 @@ class CustomerUser(Document):
             enabled = self.enabled
         )).insert(ignore_permissions=True)
 		else:
-			check = frappe.db.get_value('User', self.email, ['user_type'],as_dict=1)
-			if "System" in check.user_type:
-				frappe.throw(_('Email already exists on the system, please check again!'))
-			else:
-				update_user = frappe.get_doc("User",self.email)
-				update_user.first_name = self.full_name
-				update_user.enabled = self.enabled
-				update_user.save(ignore_permissions=True)
+			frappe.throw(_('Email already exists on the system, please check again!'))
+	def validate(self):
+		if frappe.db.exists("User", self.email):
+			update_user = frappe.get_doc("User",self.email)
+			update_user.first_name = self.full_name
+			update_user.enabled = self.enabled
+			update_user.save(ignore_permissions=True)
 
 	def on_trash(self):
-		if not frappe.db.exists("User", self.email):
+		if frappe.db.exists("User", self.email):
 			check = frappe.db.get_value('User', self.email, ['user_type'],as_dict=1)
 			if "Website" in check.user_type:
 				ref_user = frappe.get_doc("User",self.email)
 				ref_user.delete(ignore_permissions=True)
-
