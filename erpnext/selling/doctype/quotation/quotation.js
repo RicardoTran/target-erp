@@ -84,62 +84,62 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 			}
 		}
 
-		if (doc.docstatus == 1 && !["Lost", "Ordered"].includes(doc.status)) {
-			if (frappe.boot.sysdefaults.allow_sales_order_creation_for_expired_quotation
-				|| (!doc.valid_till)
-				|| frappe.datetime.get_diff(doc.valid_till, frappe.datetime.get_today()) >= 0) {
-					this.frm.add_custom_button(
-						__("Sales Order"),
-						() => this.make_sales_order(),
-						__("Create")
-					);
-				}
+		// if (doc.docstatus == 1 && !["Lost", "Ordered"].includes(doc.status)) {
+		// 	if (frappe.boot.sysdefaults.allow_sales_order_creation_for_expired_quotation
+		// 		|| (!doc.valid_till)
+		// 		|| frappe.datetime.get_diff(doc.valid_till, frappe.datetime.get_today()) >= 0) {
+		// 			this.frm.add_custom_button(
+		// 				__("Sales Order"),
+		// 				() => this.make_sales_order(),
+		// 				__("Create")
+		// 			);
+		// 		}
 
-			if(doc.status!=="Ordered") {
-				this.frm.add_custom_button(__('Set as Lost'), () => {
-						this.frm.trigger('set_as_lost_dialog');
-					});
-				}
+		// 	if(doc.status!=="Ordered") {
+		// 		this.frm.add_custom_button(__('Set as Lost'), () => {
+		// 				this.frm.trigger('set_as_lost_dialog');
+		// 			});
+		// 		}
 
-			if(!doc.auto_repeat) {
-				cur_frm.add_custom_button(__('Subscription'), function() {
-					erpnext.utils.make_subscription(doc.doctype, doc.name)
-				}, __('Create'))
-			}
+		// 	if(!doc.auto_repeat) {
+		// 		cur_frm.add_custom_button(__('Subscription'), function() {
+		// 			erpnext.utils.make_subscription(doc.doctype, doc.name)
+		// 		}, __('Create'))
+		// 	}
 
-			cur_frm.page.set_inner_btn_group_as_primary(__('Create'));
-		}
+		// 	cur_frm.page.set_inner_btn_group_as_primary(__('Create'));
+		// }
 
-		if (this.frm.doc.docstatus===0) {
-			this.frm.add_custom_button(__('Opportunity'),
-				function() {
-					erpnext.utils.map_current_doc({
-						method: "erpnext.crm.doctype.opportunity.opportunity.make_quotation",
-						source_doctype: "Opportunity",
-						target: me.frm,
-						setters: [
-							{
-								label: "Party",
-								fieldname: "party_name",
-								fieldtype: "Link",
-								options: me.frm.doc.quotation_to,
-								default: me.frm.doc.party_name || undefined
-							},
-							{
-								label: "Opportunity Type",
-								fieldname: "opportunity_type",
-								fieldtype: "Link",
-								options: "Opportunity Type",
-								default: me.frm.doc.order_type || undefined
-							}
-						],
-						get_query_filters: {
-							status: ["not in", ["Lost", "Closed"]],
-							company: me.frm.doc.company
-						}
-					})
-				}, __("Get Items From"), "btn-default");
-		}
+		// if (this.frm.doc.docstatus===0) {
+		// 	this.frm.add_custom_button(__('Opportunity'),
+		// 		function() {
+		// 			erpnext.utils.map_current_doc({
+		// 				method: "erpnext.crm.doctype.opportunity.opportunity.make_quotation",
+		// 				source_doctype: "Opportunity",
+		// 				target: me.frm,
+		// 				setters: [
+		// 					{
+		// 						label: "Party",
+		// 						fieldname: "party_name",
+		// 						fieldtype: "Link",
+		// 						options: me.frm.doc.quotation_to,
+		// 						default: me.frm.doc.party_name || undefined
+		// 					},
+		// 					{
+		// 						label: "Opportunity Type",
+		// 						fieldname: "opportunity_type",
+		// 						fieldtype: "Link",
+		// 						options: "Opportunity Type",
+		// 						default: me.frm.doc.order_type || undefined
+		// 					}
+		// 				],
+		// 				get_query_filters: {
+		// 					status: ["not in", ["Lost", "Closed"]],
+		// 					company: me.frm.doc.company
+		// 				}
+		// 			})
+		// 		}, __("Get Items From"), "btn-default");
+		// }
 
 		this.toggle_reqd_lead_customer();
 
@@ -345,4 +345,59 @@ frappe.ui.form.on("Quotation Item", "stock_balance", function(frm, cdt, cdn) {
 	var d = frappe.model.get_doc(cdt, cdn);
 	frappe.route_options = {"item_code": d.item_code};
 	frappe.set_route("query-report", "Stock Balance");
+})
+
+frappe.ui.form.on('Quotation Item',{
+    from_year: function(frm, cdt, cdn){
+		let d = locals[cdt][cdn];
+		if(d.from_year > 0 && d.to_year > 0 && d.from_year <= d.to_year) {
+			d.qty = d.to_year - d.from_year + 1
+		}else {
+			d.qty = 0
+		}
+		d.amount = d.qty * d.rate
+		frm.refresh_field('items');
+		//summary
+		var total = 0;
+		var total_qty = 0;
+		frm.doc.items.forEach(function (d) { 
+			total += d.amount;
+			total_qty += d.qty;
+		});
+		cur_frm.set_value('total', total);
+		cur_frm.set_value('total_qty', total_qty);
+		frm.refresh_field('total','total_qty');
+	},
+	to_year: function(frm, cdt, cdn){
+		let d = locals[cdt][cdn];
+		if(d.from_year > 0 && d.to_year > 0 && d.from_year <= d.to_year) {
+			d.qty = d.to_year - d.from_year + 1
+		}else {
+			d.qty = 0
+		}
+		d.amount = d.qty * d.rate
+		frm.refresh_field('items');
+		//summary
+		var total = 0;
+		var total_qty = 0;
+		frm.doc.items.forEach(function (d) { 
+			total += d.amount;
+			total_qty += d.qty;
+		});
+		cur_frm.set_value('total', total);
+		cur_frm.set_value('total_qty', total_qty);
+		frm.refresh_field('total','total_qty');
+	},
+	items_remove: function(frm, cdt, cdn){
+		var d = locals[cdt][cdn];
+		var total = 0;
+		var total_qty = 0;
+		frm.doc.items.forEach(function (d) { 
+			total += d.amount;
+			total_qty += d.qty;
+		});
+		cur_frm.set_value('total', total);
+		cur_frm.set_value('total_qty', total_qty);
+		refresh_field('total','total_qty');
+	}
 })
