@@ -1,37 +1,30 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2023-08-12 15:05:48.195586",
+ "creation": "2023-08-12 16:37:18.214896",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "title",
-  "column_break_84smc",
+  "column_break_mhvfc",
   "reference_type",
-  "section_break_o2tmj",
-  "content"
+  "section_break_iky7n",
+  "subject",
+  "body"
  ],
  "fields": [
   {
    "fieldname": "title",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Title"
+   "label": "Title",
+   "reqd": 1
   },
   {
-   "fieldname": "column_break_84smc",
+   "fieldname": "column_break_mhvfc",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "section_break_o2tmj",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "content",
-   "fieldtype": "Small Text",
-   "label": "Content"
   },
   {
    "fieldname": "reference_type",
@@ -39,14 +32,29 @@
    "in_list_view": 1,
    "label": "Reference Type",
    "options": "DocType"
+  },
+  {
+   "fieldname": "section_break_iky7n",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Small Text",
+   "label": "Subject",
+   "max_height": "36px"
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "HTML Editor",
+   "label": "Body"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-12 16:33:53.092592",
+ "modified": "2023-08-12 16:37:45.998161",
  "modified_by": "Administrator",
  "module": "Selling",
- "name": "Push SMS Template",
+ "name": "Push Email Template",
  "owner": "Administrator",
  "permissions": [
   {

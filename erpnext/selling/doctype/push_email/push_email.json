@@ -1,0 +1,118 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-08-12 16:53:28.475370",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "from_email",
+  "reference_type",
+  "reference_name",
+  "column_break_u6nyr",
+  "to_email",
+  "link",
+  "send_id",
+  "section_break_hwyeu",
+  "subject",
+  "body",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "from_email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "From Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "reference_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Reference Type",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Name",
+   "options": "reference_type"
+  },
+  {
+   "fieldname": "column_break_u6nyr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "to_email",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "To Email",
+   "max_height": "110px",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_hwyeu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Subject",
+   "max_height": "36px"
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "HTML Editor",
+   "label": "Body"
+  },
+  {
+   "fieldname": "send_id",
+   "fieldtype": "Data",
+   "label": "Send ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Push Email",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "link",
+   "fieldtype": "Data",
+   "label": "Link"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-08-12 17:44:13.572542",
+ "modified_by": "Administrator",
+ "module": "Selling",
+ "name": "Push Email",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
