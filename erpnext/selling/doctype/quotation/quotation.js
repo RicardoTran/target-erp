@@ -34,6 +34,13 @@ frappe.ui.form.on('Quotation', {
 				}
 			};
 		});
+		cur_frm.fields_dict['print_template'].get_query = function(doc) {
+			return {
+				filters: {
+					"doc_type": 'Quotation'
+				}
+			}
+		}
 	},
 
 	refresh: function(frm) {
