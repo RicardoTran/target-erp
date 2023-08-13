@@ -47,7 +47,7 @@ class PushEmail(Document):
 			'reference_doctype': 'Push Email',
 			'reference_name': self.name,
 			'content': response.text,
-		}).insert()
+		}).insert(ignore_permissions=True)
 
 		#Update
 		self.from_email = from_email
@@ -55,5 +55,5 @@ class PushEmail(Document):
 		self.body = body
 		if 'id' in response:
 			self.send_id = response.id
-		self.save()
+		self.save(ignore_permissions=True)
 		self.submit()

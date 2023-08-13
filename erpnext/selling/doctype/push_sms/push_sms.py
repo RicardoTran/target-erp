@@ -35,8 +35,8 @@ class PushSMS(Document):
 			'reference_doctype': 'Push SMS',
 			'reference_name': self.name,
 			'content': response.text,
-		}).insert()
+		}).insert(ignore_permissions=True)
 
 		self.content = content
-		self.save()
+		self.save(ignore_permissions=True)
 		self.submit()

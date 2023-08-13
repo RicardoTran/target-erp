@@ -54,6 +54,20 @@ frappe.ui.form.on('Quotation', {
 		frm.trigger("set_dynamic_field_label");
 	},
 
+	before_workflow_action: (frm) => {
+		// frappe.dom.unfreeze()
+		if (frm.doc.workflow_state == "Draft") {
+			if (frm.selected_workflow_action == "Send") {
+				this.frm.call("send_quotation");
+			}
+		}
+		if (frm.doc.workflow_state == "Awaiting for response") {
+			if (frm.selected_workflow_action == "Reject") {
+				this.frm.trigger('set_as_lost_dialog');
+			}
+		}
+	},
+	
 	set_label: function(frm) {
 		frm.fields_dict.customer_address.set_label(__(frm.doc.quotation_to + " Address"));
 	}
@@ -89,7 +103,13 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 			} else {
 				this.frm.set_value('valid_till', frappe.datetime.add_months(doc.transaction_date, 1));
 			}
-		}
+		};
+
+		if(!doc.__islocal && doc.workflow_state == "Awaiting for response") {
+			this.frm.add_custom_button(__("Resend Email & SMS"), () => {
+				this.frm.call("send_quotation");
+			})
+		};
 
 		// if (doc.docstatus == 1 && !["Lost", "Ordered"].includes(doc.status)) {
 		// 	if (frappe.boot.sysdefaults.allow_sales_order_creation_for_expired_quotation
