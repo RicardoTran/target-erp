@@ -58,7 +58,9 @@ frappe.ui.form.on('Quotation', {
 		// frappe.dom.unfreeze()
 		if (frm.doc.workflow_state == "Draft") {
 			if (frm.selected_workflow_action == "Send") {
-				this.frm.call("send_quotation");
+				this.frm.call("send_quotation").then(() =>{
+					// frappe.msgprint(__("Email sent succesfully"));
+				});
 			}
 		}
 		if (frm.doc.workflow_state == "Awaiting for response") {
@@ -106,8 +108,15 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 		};
 
 		if(doc.workflow_state == "Awaiting for response") {
-			this.frm.add_custom_button(__("Resend Email & SMS"), () => {
-				this.frm.call("send_quotation");
+			this.frm.add_custom_button(__("Resend Email"), () => {
+				this.frm.call("send_quotation_email").then(() =>{
+					// frappe.msgprint(__("Email sent succesfully"));
+				});
+			});
+			this.frm.add_custom_button(__("Resend SMS"), () => {
+				this.frm.call("send_quotation_sms").then(() =>{
+					// frappe.msgprint(__("Email sent succesfully"));
+				});
 			})
 		};
 

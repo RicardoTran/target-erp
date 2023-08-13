@@ -40,6 +40,7 @@ class PushEmail(Document):
 		}
 
 		response = requests.request("POST", url, headers=headers, data=payload)
+		jsonstr = json.loads(response.text)
 		
 		frappe.get_doc({
 			'doctype': 'Comment',
@@ -53,7 +54,7 @@ class PushEmail(Document):
 		self.from_email = from_email
 		self.subject = template.subject
 		self.body = body
-		if 'id' in response:
-			self.send_id = response.id
+		if 'id' in response.text:
+			self.send_id = jsonstr["id"]
 		self.save(ignore_permissions=True)
 		self.submit()
