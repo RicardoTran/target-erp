@@ -116,10 +116,12 @@
   "update_auto_repeat_reference",
   "print_settings",
   "print_template",
+  "unsigned_file",
   "letter_head",
   "group_same_items",
   "column_break_73",
   "language",
+  "signed_file",
   "select_print_heading",
   "lost_reasons_section",
   "lost_reasons",
@@ -796,7 +798,6 @@
    "oldfieldtype": "Text Editor"
   },
   {
-   "collapsible": 1,
    "fieldname": "print_settings",
    "fieldtype": "Section Break",
    "label": "Print Settings"
@@ -1133,13 +1134,23 @@
    "fieldname": "workflow_state",
    "fieldtype": "Data",
    "label": "Workflow State"
+  },
+  {
+   "fieldname": "unsigned_file",
+   "fieldtype": "Attach",
+   "label": "Unsigned File"
+  },
+  {
+   "fieldname": "signed_file",
+   "fieldtype": "Attach",
+   "label": "Signed File"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-13 08:00:31.747892",
+ "modified": "2023-08-13 16:17:52.380820",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
