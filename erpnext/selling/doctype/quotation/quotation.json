@@ -141,7 +141,8 @@
   "enq_det",
   "approval_id",
   "connections_tab",
-  "workflow_state"
+  "workflow_state",
+  "comment_flag"
  ],
  "fields": [
   {
@@ -1144,13 +1145,20 @@
    "fieldname": "signed_file",
    "fieldtype": "Attach",
    "label": "Signed File"
+  },
+  {
+   "default": "0",
+   "fieldname": "comment_flag",
+   "fieldtype": "Int",
+   "label": "Comment Flag",
+   "read_only": 1
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-13 16:17:52.380820",
+ "modified": "2023-08-13 21:38:32.319860",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
