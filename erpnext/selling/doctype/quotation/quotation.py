@@ -163,45 +163,69 @@ class Quotation(SellingController):
 				str_uuid = str(uuid.uuid4())
 				self.approval_id = str_uuid
 				self.save()
-				approval_url = frappe.db.get_single_value("Approval Settings","approval_url") + "/quotation/" + str_uuid
 
 				# Send Email
-				if	self.contact_email:
-					push_email = frappe.new_doc('Push Email')
-					push_email.to_email = self.contact_email
-					push_email.reference_type = "Quotation"
-					push_email.reference_name = self.name
-					push_email.link = approval_url
-					push_email.insert(ignore_permissions=True)
-					# Add comments
-					frappe.get_doc({
-						'doctype': 'Comment',
-						'comment_type': 'Comment',
-						'reference_doctype': 'Quotation',
-						'reference_name': self.name,
-						'content': 'Đã gửi email thông báo đến: ' + self.contact_email,
-					}).insert(ignore_permissions=True)
-
+				self.send_quotation_email()
 				# Send SMS
-				if	self.contact_mobile:
-					push_sms = frappe.new_doc('Push SMS')
-					push_sms.phone_number = self.contact_mobile.replace('0','84', 1).replace(' ','')
-					push_sms.reference_type = "Quotation"
-					push_sms.reference_name = self.name
-					push_sms.url = approval_url
-					push_sms.insert(ignore_permissions=True)
-					# Add comments
-					# Add comments
-					frappe.get_doc({
-						'doctype': 'Comment',
-						'comment_type': 'Comment',
-						'reference_doctype': 'Quotation',
-						'reference_name': self.name,
-						'content': 'Đã gửi SMS thông báo đến: ' + self.contact_mobile,
-					}).insert(ignore_permissions=True)
+				self.send_quotation_sms()
 		else:
 			frappe.msgprint(_("Could not find email or mobile phone to send information"))
 	
+	@frappe.whitelist()
+	def send_quotation_email(self):
+		# Send Email
+		if self.contact_email:
+			approval_url = frappe.db.get_single_value("Approval Settings","approval_url") + "/quotation/" + self.approval_id
+			push_email = frappe.new_doc('Push Email')
+			push_email.to_email = self.contact_email
+			push_email.reference_type = "Quotation"
+			push_email.reference_name = self.name
+			push_email.link = approval_url
+			push_email.insert(ignore_permissions=True)
+			#Check send ok
+			last_push = frappe.get_last_doc('Push Email')
+			if last_push.send_id:
+				# Add comments
+				frappe.get_doc({
+					'doctype': 'Comment',
+					'comment_type': 'Comment',
+					'reference_doctype': 'Quotation',
+					'reference_name': self.name,
+					'content': 'Đã gửi email thông báo đến: ' + self.contact_email,
+				}).insert(ignore_permissions=True)
+				frappe.msgprint('Đã gửi email thông báo đến: ' + self.contact_email)
+			else:
+				frappe.throw('Gửi email thất bại.')
+		else:
+			frappe.msgprint(_("Could not find email to send information"))
+
+	@frappe.whitelist()
+	def send_quotation_sms(self):
+		if	self.contact_mobile:
+			approval_url = frappe.db.get_single_value("Approval Settings","approval_url") + "/quotation/" + self.approval_id
+			push_sms = frappe.new_doc('Push SMS')
+			push_sms.phone_number = self.contact_mobile.replace('0','84', 1).replace(' ','')
+			push_sms.reference_type = "Quotation"
+			push_sms.reference_name = self.name
+			push_sms.url = approval_url
+			push_sms.insert(ignore_permissions=True)
+			#Check send ok
+			last_push = frappe.get_last_doc('Push SMS')
+			if last_push.result == 1:
+				# Add comments
+				frappe.get_doc({
+					'doctype': 'Comment',
+					'comment_type': 'Comment',
+					'reference_doctype': 'Quotation',
+					'reference_name': self.name,
+					'content': 'Đã gửi SMS thông báo đến: ' + self.contact_mobile,
+				}).insert(ignore_permissions=True)
+				frappe.msgprint('Đã gửi SMS thông báo đến: ' + self.contact_mobile)
+			else:
+				frappe.throw('Gửi SMS thất bại.')
+		else:
+			frappe.msgprint(_("Could not find mobile phone to send information"))
+
 	@frappe.whitelist()
 	def declare_enquiry_lost(self, lost_reasons_list, competitors, detailed_reason=None):
 		if not (self.is_fully_ordered() or self.is_partially_ordered()):

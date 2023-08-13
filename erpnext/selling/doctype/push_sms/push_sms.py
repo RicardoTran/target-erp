@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+import json
 import requests
 from frappe import _, msgprint, qb
 from frappe.model.document import Document
@@ -29,6 +30,7 @@ class PushSMS(Document):
 			'Content-Type': 'text/xml'
 		}
 		response = requests.request("POST", url, headers=headers, data=payload)
+
 		frappe.get_doc({
 			'doctype': 'Comment',
 			'comment_type': 'Comment',
@@ -36,7 +38,10 @@ class PushSMS(Document):
 			'reference_name': self.name,
 			'content': response.text,
 		}).insert(ignore_permissions=True)
-
+		if '<result>1</result>' in response.text:
+			self.result = 1
+		else:
+			self.result = 0
 		self.content = content
 		self.save(ignore_permissions=True)
 		self.submit()
