@@ -105,7 +105,7 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 			}
 		};
 
-		if(!doc.__islocal && doc.workflow_state == "Awaiting for response") {
+		if(doc.workflow_state == "Awaiting for response") {
 			this.frm.add_custom_button(__("Resend Email & SMS"), () => {
 				this.frm.call("send_quotation");
 			})
