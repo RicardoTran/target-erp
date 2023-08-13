@@ -115,12 +115,12 @@
   "auto_repeat",
   "update_auto_repeat_reference",
   "print_settings",
+  "print_template",
   "letter_head",
   "group_same_items",
   "column_break_73",
-  "select_print_heading",
-  "print_template",
   "language",
+  "select_print_heading",
   "lost_reasons_section",
   "lost_reasons",
   "competitors",
@@ -138,7 +138,8 @@
   "supplier_quotation",
   "enq_det",
   "approval_id",
-  "connections_tab"
+  "connections_tab",
+  "workflow_state"
  ],
  "fields": [
   {
@@ -804,6 +805,7 @@
    "allow_on_submit": 1,
    "fieldname": "letter_head",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Letter Head",
    "oldfieldname": "letter_head",
    "oldfieldtype": "Select",
@@ -815,6 +817,7 @@
    "default": "0",
    "fieldname": "group_same_items",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Group same items",
    "print_hide": 1
   },
@@ -826,6 +829,7 @@
    "allow_on_submit": 1,
    "fieldname": "select_print_heading",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Print Heading",
    "no_copy": 1,
    "oldfieldname": "select_print_heading",
@@ -1124,13 +1128,18 @@
    "fieldtype": "Data",
    "label": "Approval ID",
    "read_only": 1
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Data",
+   "label": "Workflow State"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-12 22:54:20.848021",
+ "modified": "2023-08-13 08:00:31.747892",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
