@@ -3,6 +3,7 @@
 
 
 import frappe
+import uuid
 from frappe import _
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils import flt, getdate, nowdate
@@ -152,6 +153,55 @@ class Quotation(SellingController):
 		opp = frappe.get_doc("Opportunity", opportunity)
 		opp.set_status(status=status, update=True)
 
+	@frappe.whitelist()
+	def send_quotation(self):
+		if self.contact_person:
+			if not self.contact_email and not self.contact.mobile:
+				frappe.msgprint(_("Could not find email or mobile phone to send information"))
+			else:
+				# Create approval id
+				str_uuid = str(uuid.uuid4())
+				self.approval_id = str_uuid
+				self.save()
+				approval_url = frappe.db.get_single_value("Approval Settings","approval_url") + "/quotation/" + str_uuid
+
+				# Send Email
+				if	self.contact_email:
+					push_email = frappe.new_doc('Push Email')
+					push_email.to_email = self.contact_email
+					push_email.reference_type = "Quotation"
+					push_email.reference_name = self.name
+					push_email.link = approval_url
+					push_email.insert(ignore_permissions=True)
+					# Add comments
+					frappe.get_doc({
+						'doctype': 'Comment',
+						'comment_type': 'Comment',
+						'reference_doctype': 'Quotation',
+						'reference_name': self.name,
+						'content': 'Đã gửi email thông báo đến: ' + self.contact_email,
+					}).insert(ignore_permissions=True)
+
+				# Send SMS
+				if	self.contact_mobile:
+					push_sms = frappe.new_doc('Push SMS')
+					push_sms.phone_number = self.contact_mobile.replace('0','84').replace(' ','')
+					push_sms.reference_type = "Quotation"
+					push_sms.reference_name = self.name
+					push_sms.url = approval_url
+					push_sms.insert(ignore_permissions=True)
+					# Add comments
+					# Add comments
+					frappe.get_doc({
+						'doctype': 'Comment',
+						'comment_type': 'Comment',
+						'reference_doctype': 'Quotation',
+						'reference_name': self.name,
+						'content': 'Đã gửi SMS thông báo đến: ' + self.contact_mobile,
+					}).insert(ignore_permissions=True)
+		else:
+			frappe.msgprint(_("Could not find email or mobile phone to send information"))
+	
 	@frappe.whitelist()
 	def declare_enquiry_lost(self, lost_reasons_list, competitors, detailed_reason=None):
 		if not (self.is_fully_ordered() or self.is_partially_ordered()):

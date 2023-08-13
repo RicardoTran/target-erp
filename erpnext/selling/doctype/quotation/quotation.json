@@ -119,6 +119,7 @@
   "group_same_items",
   "column_break_73",
   "select_print_heading",
+  "print_template",
   "language",
   "lost_reasons_section",
   "lost_reasons",
@@ -136,6 +137,7 @@
   "opportunity",
   "supplier_quotation",
   "enq_det",
+  "approval_id",
   "connections_tab"
  ],
  "fields": [
@@ -170,7 +172,6 @@
    "default": "Customer",
    "fieldname": "quotation_to",
    "fieldtype": "Link",
-   "in_standard_filter": 1,
    "label": "Quotation To",
    "oldfieldname": "quotation_to",
    "oldfieldtype": "Select",
@@ -254,7 +255,6 @@
    "default": "Sales",
    "fieldname": "order_type",
    "fieldtype": "Select",
-   "in_standard_filter": 1,
    "label": "Order Type",
    "oldfieldname": "order_type",
    "oldfieldtype": "Select",
@@ -1081,6 +1081,7 @@
    "label": "Named Place"
   },
   {
+   "default": "Ch\u01b0a bao g\u1ed3m",
    "fieldname": "tax_include",
    "fieldtype": "Select",
    "label": "Tax Include",
@@ -1111,13 +1112,25 @@
    "fieldname": "phone_number_quote",
    "fieldtype": "Data",
    "label": "Phone number quote"
+  },
+  {
+   "fieldname": "print_template",
+   "fieldtype": "Link",
+   "label": "Print Template",
+   "options": "Print Format"
+  },
+  {
+   "fieldname": "approval_id",
+   "fieldtype": "Data",
+   "label": "Approval ID",
+   "read_only": 1
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-17 14:50:00.543880",
+ "modified": "2023-08-12 22:54:20.848021",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",

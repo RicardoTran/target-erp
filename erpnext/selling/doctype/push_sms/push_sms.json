@@ -9,9 +9,12 @@
  "field_order": [
   "phone_number",
   "unicode_char",
-  "section_break_ri1v0",
+  "column_break_b0ckt",
+  "reference_type",
+  "reference_name",
+  "url",
+  "section_break_qnzxq",
   "content",
-  "body",
   "amended_from"
  ],
  "fields": [
@@ -45,18 +48,35 @@
    "read_only": 1
   },
   {
-   "fieldname": "section_break_ri1v0",
-   "fieldtype": "Section Break"
+   "fieldname": "column_break_b0ckt",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "body",
-   "fieldtype": "Code",
-   "label": "Body"
+   "fieldname": "reference_type",
+   "fieldtype": "Link",
+   "label": "Reference Type",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Name",
+   "options": "reference_type"
+  },
+  {
+   "fieldname": "url",
+   "fieldtype": "Data",
+   "label": "URL"
+  },
+  {
+   "fieldname": "section_break_qnzxq",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2023-08-12 13:16:16.452010",
+ "modified": "2023-08-12 16:02:03.921376",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Push SMS",
