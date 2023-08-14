@@ -155,15 +155,14 @@ class Quotation(SellingController):
 
 	@frappe.whitelist()
 	def send_quotation(self):
+		# Create approval id
+		str_uuid = str(uuid.uuid4())
+		self.approval_id = str_uuid
+		self.save()
 		if self.contact_person:
 			if not self.contact_email and not self.contact.mobile:
 				frappe.msgprint(_("Could not find email or mobile phone to send information"))
 			else:
-				# Create approval id
-				str_uuid = str(uuid.uuid4())
-				self.approval_id = str_uuid
-				self.save()
-
 				# Send Email
 				self.send_quotation_email()
 				# Send SMS
@@ -175,6 +174,10 @@ class Quotation(SellingController):
 	def send_quotation_email(self):
 		# Send Email
 		if self.contact_email:
+			if not self.approval_id:
+				str_uuid = str(uuid.uuid4())
+				self.approval_id = str_uuid
+				self.save()
 			approval_url = frappe.db.get_single_value("Approval Settings","approval_url") + "/quotation/" + self.approval_id
 			push_email = frappe.new_doc('Push Email')
 			push_email.to_email = self.contact_email
@@ -202,6 +205,10 @@ class Quotation(SellingController):
 	@frappe.whitelist()
 	def send_quotation_sms(self):
 		if	self.contact_mobile:
+			if not self.approval_id:
+				str_uuid = str(uuid.uuid4())
+				self.approval_id = str_uuid
+				self.save()
 			approval_url = frappe.db.get_single_value("Approval Settings","approval_url") + "/quotation/" + self.approval_id
 			push_sms = frappe.new_doc('Push SMS')
 			push_sms.phone_number = self.contact_mobile.replace('0','84', 1).replace(' ','')
