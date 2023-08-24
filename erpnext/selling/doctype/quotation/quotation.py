@@ -197,6 +197,10 @@ class Quotation(SellingController):
 					'content': 'Đã gửi email thông báo đến: ' + self.contact_email,
 				}).insert(ignore_permissions=True)
 				frappe.msgprint('Đã gửi email thông báo đến: ' + self.contact_email)
+				# Update comment flag
+				if self.comment_flag == 0:
+					self.comment_flag = 1
+					self.save()
 			else:
 				frappe.throw('Gửi email thất bại.')
 		else:
@@ -228,6 +232,10 @@ class Quotation(SellingController):
 					'content': 'Đã gửi SMS thông báo đến: ' + self.contact_mobile,
 				}).insert(ignore_permissions=True)
 				frappe.msgprint('Đã gửi SMS thông báo đến: ' + self.contact_mobile)
+				# Update comment flag
+				if self.comment_flag == 0:
+					self.comment_flag = 1
+					self.save()
 			else:
 				frappe.throw('Gửi SMS thất bại.')
 		else:
