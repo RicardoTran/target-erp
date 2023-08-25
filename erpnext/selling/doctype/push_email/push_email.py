@@ -57,4 +57,4 @@ class PushEmail(Document):
 		if 'id' in response.text:
 			self.send_id = jsonstr["id"]
 		self.save(ignore_permissions=True)
-		self.submit()
+		# self.submit()

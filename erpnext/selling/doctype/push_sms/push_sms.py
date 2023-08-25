@@ -44,4 +44,4 @@ class PushSMS(Document):
 			self.result = 0
 		self.content = content
 		self.save(ignore_permissions=True)
-		self.submit()
+		# self.submit()
