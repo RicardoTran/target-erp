@@ -116,6 +116,7 @@
   "update_auto_repeat_reference",
   "print_settings",
   "print_template",
+  "create_pdf",
   "unsigned_file",
   "letter_head",
   "group_same_items",
@@ -1137,11 +1138,13 @@
    "label": "Workflow State"
   },
   {
+   "depends_on": "eval:!doc.__islocal",
    "fieldname": "unsigned_file",
    "fieldtype": "Attach",
    "label": "Unsigned File"
   },
   {
+   "depends_on": "eval:!doc.__islocal",
    "fieldname": "signed_file",
    "fieldtype": "Attach",
    "label": "Signed File"
@@ -1150,15 +1153,22 @@
    "default": "0",
    "fieldname": "comment_flag",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "Comment Flag",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.print_template && !doc.__islocal && !doc.unsigned_file",
+   "fieldname": "create_pdf",
+   "fieldtype": "Button",
+   "label": "Create PDF"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-13 21:38:32.319860",
+ "modified": "2023-08-25 23:55:52.396785",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
