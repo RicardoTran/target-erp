@@ -1,10 +1,10 @@
 // Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 // License: GNU General Public License v3. See license.txt
 
-
 {% include 'erpnext/selling/sales_common.js' %}
 
 frappe.ui.form.on('Quotation', {
+
 	setup: function(frm) {
 		frm.custom_make_buttons = {
 			'Sales Order': 'Sales Order'
@@ -72,6 +72,16 @@ frappe.ui.form.on('Quotation', {
 	
 	set_label: function(frm) {
 		frm.fields_dict.customer_address.set_label(__(frm.doc.quotation_to + " Address"));
+	},
+
+	create_pdf: function(frm) {
+		frappe.call({
+			doc: frm.doc,
+			method: 'attach_pdf'
+			// callback: function(r, rt) {
+			//    //call back operation
+			// }
+		  })
 	}
 });
 
