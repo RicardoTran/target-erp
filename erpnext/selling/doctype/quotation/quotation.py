@@ -207,7 +207,7 @@ class Quotation(SellingController):
 					self.comment_flag = 0
 					self.save()
 			else:
-				frappe.throw('Gửi email thất bại.')
+				frappe.msgprint('Gửi email thất bại.')
 		else:
 			frappe.msgprint(_("Could not find email to send information"))
 
@@ -242,7 +242,7 @@ class Quotation(SellingController):
 					self.comment_flag = 0
 					self.save()
 			else:
-				frappe.throw('Gửi SMS thất bại.')
+				frappe.msgprint('Gửi SMS thất bại.')
 		else:
 			frappe.msgprint(_("Could not find mobile phone to send information"))
 
