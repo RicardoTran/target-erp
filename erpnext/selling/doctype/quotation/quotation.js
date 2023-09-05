@@ -55,9 +55,12 @@ frappe.ui.form.on('Quotation', {
 	},
 
 	before_workflow_action: (frm) => {
-		// frappe.dom.unfreeze()
+		frappe.dom.unfreeze()
 		if (frm.doc.workflow_state == "Draft") {
 			if (frm.selected_workflow_action == "Send") {
+				if (!frm.doc.unsigned_file){
+					frappe.throw(__("Please attach a quote file or create a file from the template"))
+				}
 				this.frm.call("send_quotation").then(() =>{
 					// frappe.msgprint(__("Email sent succesfully"));
 				});
@@ -82,6 +85,7 @@ frappe.ui.form.on('Quotation', {
 			//    //call back operation
 			// }
 		  })
+		frm.reload_doc()	  
 	}
 });
 
@@ -117,7 +121,7 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 			}
 		};
 
-		if(doc.workflow_state == "Awaiting for response") {
+		if(doc.workflow_state == "Awaiting for response" && doc.unsigned_file) {
 			this.frm.add_custom_button(__("Resend Email"), () => {
 				this.frm.call("send_quotation_email").then(() =>{
 					// frappe.msgprint(__("Email sent succesfully"));
