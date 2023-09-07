@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_import": 1,
- "autoname": "naming_series",
+ "autoname": "naming_series:[naming_series]",
  "creation": "2018-04-12 06:32:04.582486",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -52,9 +52,11 @@
   "signed_by_company",
   "sb_references",
   "document_type",
+  "approval_id",
   "cb_links",
   "document_name",
-  "amended_from"
+  "amended_from",
+  "comment_flag"
  ],
  "fields": [
   {
@@ -311,7 +313,7 @@
   {
    "fieldname": "contact_mobile",
    "fieldtype": "Data",
-   "label": "Contact Mobile",
+   "label": "Contact Mobile No",
    "options": "Phone"
   },
   {
@@ -359,11 +361,24 @@
   {
    "fieldname": "section_break_lh2u3",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "approval_id",
+   "fieldtype": "Data",
+   "label": "Approval ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "comment_flag",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Comment Flag",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-07 21:33:33.935667",
+ "modified": "2023-09-08 00:33:42.834518",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",

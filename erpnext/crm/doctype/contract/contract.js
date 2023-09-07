@@ -28,5 +28,51 @@ frappe.ui.form.on("Contract", {
 				}
 			});
 		}
+	},
+	refresh: function(frm) {
+		if(frm.doc.workflow_state == "Awaiting for response" && frm.doc.unsigned_file) {
+			frm.add_custom_button(__("Resend Email"), () => {
+				frm.call("send_contract_email").then(() =>{
+					// frappe.msgprint(__("Email sent succesfully"));
+				});
+			});
+			frm.add_custom_button(__("Resend SMS"), () => {
+				frm.call("send_contract_sms").then(() =>{
+					// frappe.msgprint(__("Email sent succesfully"));
+				});
+			})
+		};
+	},
+	setup: function(frm) {
+		cur_frm.fields_dict['print_template'].get_query = function(doc) {
+			return {
+				filters: {
+					"doc_type": 'Contract'
+				}
+			}
+		}
+	},
+	before_workflow_action: (frm) => {
+		frappe.dom.unfreeze()
+		if (frm.doc.workflow_state == "Draft") {
+			if (frm.selected_workflow_action == "Send") {
+				if (!frm.doc.unsigned_file){
+					frappe.throw(__("Please attach a contract file or create a file from the template"))
+				}
+				this.frm.call("send_contract").then(() =>{
+					// frappe.msgprint(__("Email sent succesfully"));
+				});
+			}
+		}
+	},
+	create_pdf: function(frm) {
+		frappe.call({
+			doc: frm.doc,
+			method: 'attach_pdf'
+			// callback: function(r, rt) {
+			//    //call back operation
+			// }
+		  })
+		frm.reload_doc()	  
 	}
 });
