@@ -491,7 +491,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Selling",
-   "link_count": 8,
+   "link_count": 9,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -515,6 +515,16 @@
    "link_to": "Quotation",
    "link_type": "DocType",
    "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Contract",
+   "link_count": 0,
+   "link_to": "Contract",
+   "link_type": "DocType",
+   "onboard": 0,
    "type": "Link"
   },
   {
@@ -583,7 +593,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-04 23:38:11.642334",
+ "modified": "2023-08-31 18:31:34.424356",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Selling",

@@ -165,7 +165,7 @@ class Quotation(SellingController):
 		self.approval_id = str_uuid
 		self.save()
 		if self.contact_person:
-			if not self.contact_email and not self.contact.mobile:
+			if not self.contact_email and not self.contact_mobile:
 				frappe.msgprint(_("Could not find email or mobile phone to send information"))
 			else:
 				# Send Email

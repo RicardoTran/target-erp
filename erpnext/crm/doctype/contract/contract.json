@@ -1,19 +1,36 @@
 {
  "actions": [],
  "allow_import": 1,
- "allow_rename": 1,
+ "autoname": "naming_series:[naming_series]",
  "creation": "2018-04-12 06:32:04.582486",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "party_type",
+  "naming_series",
+  "date",
+  "report_end_date",
   "is_signed",
   "cb_party",
+  "party_type",
   "party_name",
+  "deadline",
   "party_user",
   "status",
   "fulfilment_status",
+  "section_break_3sahg",
+  "represent_name",
+  "contact_mobile",
+  "column_break_1xu1q",
+  "position",
+  "contact_email",
+  "section_break_tjvvz",
+  "print_template",
+  "create_pdf",
+  "section_break_lh2u3",
+  "unsigned_file",
+  "column_break_r4dwn",
+  "signed_file",
   "sb_terms",
   "start_date",
   "cb_date",
@@ -35,9 +52,11 @@
   "signed_by_company",
   "sb_references",
   "document_type",
+  "approval_id",
   "cb_links",
   "document_name",
-  "amended_from"
+  "amended_from",
+  "comment_flag"
  ],
  "fields": [
   {
@@ -53,6 +72,7 @@
    "default": "0",
    "fieldname": "is_signed",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Signed",
    "no_copy": 1
   },
@@ -63,6 +83,7 @@
   {
    "fieldname": "party_name",
    "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Party Name",
    "options": "party_type",
@@ -71,6 +92,7 @@
   {
    "fieldname": "party_user",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Party User",
    "options": "User"
   },
@@ -90,8 +112,6 @@
    "fieldname": "fulfilment_status",
    "fieldtype": "Select",
    "hidden": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Fulfilment Status",
    "no_copy": 1,
    "options": "N/A\nUnfulfilled\nPartially Fulfilled\nFulfilled\nLapsed"
@@ -104,6 +124,7 @@
   {
    "fieldname": "start_date",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Start Date"
   },
   {
@@ -113,6 +134,7 @@
   {
    "fieldname": "end_date",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "End Date"
   },
   {
@@ -133,7 +155,6 @@
    "allow_on_submit": 1,
    "fieldname": "signed_on",
    "fieldtype": "Datetime",
-   "in_list_view": 1,
    "label": "Signed On",
    "no_copy": 1
   },
@@ -145,6 +166,7 @@
    "allow_on_submit": 1,
    "fieldname": "ip_address",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "IP Address",
    "no_copy": 1,
    "read_only": 1
@@ -159,31 +181,34 @@
   {
    "fieldname": "contract_template",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Contract Template",
    "options": "Contract Template"
   },
   {
    "fieldname": "contract_terms",
    "fieldtype": "Text Editor",
-   "in_list_view": 1,
-   "label": "Contract Terms",
-   "reqd": 1
+   "hidden": 1,
+   "label": "Contract Terms"
   },
   {
    "fieldname": "sb_fulfilment",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Fulfilment Details"
   },
   {
    "default": "0",
    "fieldname": "requires_fulfilment",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Requires Fulfilment"
   },
   {
    "depends_on": "eval:doc.requires_fulfilment==1",
    "fieldname": "fulfilment_deadline",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Fulfilment Deadline"
   },
   {
@@ -191,11 +216,11 @@
    "depends_on": "eval:doc.requires_fulfilment==1",
    "fieldname": "fulfilment_terms",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Fulfilment Terms",
    "options": "Contract Fulfilment Checklist"
   },
   {
-   "collapsible": 1,
    "fieldname": "sb_references",
    "fieldtype": "Section Break",
    "label": "References"
@@ -214,8 +239,6 @@
    "fieldname": "document_name",
    "fieldtype": "Dynamic Link",
    "in_global_search": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Document Name",
    "options": "document_type"
   },
@@ -231,11 +254,13 @@
   {
    "fieldname": "signee_company",
    "fieldtype": "Signature",
+   "hidden": 1,
    "label": "Signee (Company)"
   },
   {
    "fieldname": "signed_by_company",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Signed By (Company)",
    "options": "User",
    "read_only": 1
@@ -243,15 +268,121 @@
   {
    "fieldname": "authorised_by_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Authorised By"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "no_copy": 1,
+   "options": "#####./.YYYY./HD-TARGET",
+   "print_hide": 1,
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "report_end_date",
+   "fieldtype": "Date",
+   "label": "Report End Date"
+  },
+  {
+   "fieldname": "deadline",
+   "fieldtype": "Int",
+   "label": "Deadline"
+  },
+  {
+   "fieldname": "section_break_3sahg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_1xu1q",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "represent_name",
+   "fieldtype": "Data",
+   "label": "Represent Name"
+  },
+  {
+   "fieldname": "contact_mobile",
+   "fieldtype": "Data",
+   "label": "Contact Mobile No",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Data",
+   "label": "Position"
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Contact Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "section_break_tjvvz",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "print_template",
+   "fieldtype": "Link",
+   "label": "Print Template",
+   "options": "Print Format"
+  },
+  {
+   "fieldname": "unsigned_file",
+   "fieldtype": "Attach",
+   "label": "Unsigned File"
+  },
+  {
+   "fieldname": "column_break_r4dwn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.print_template && !doc.__islocal && !doc.unsigned_file",
+   "fieldname": "create_pdf",
+   "fieldtype": "Button",
+   "label": "Create PDF"
+  },
+  {
+   "fieldname": "signed_file",
+   "fieldtype": "Attach",
+   "label": "Signed File"
+  },
+  {
+   "fieldname": "section_break_lh2u3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "approval_id",
+   "fieldtype": "Data",
+   "label": "Approval ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "comment_flag",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Comment Flag",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-12-07 11:15:58.385521",
+ "modified": "2023-09-08 00:33:42.834518",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -313,11 +444,38 @@
    "share": 1,
    "submit": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Master Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
   }
  ],
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1,
  "track_seen": 1
 }
