@@ -133,6 +133,17 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 				});
 			})
 		};
+		if(doc.workflow_state == "Approved" && !doc.contract) {
+			this.frm.add_custom_button(__("Create Contract"), () => {
+				this.frm.call("create_contract").then((r) =>{
+					var str = JSON.stringify(r);
+					var json = JSON.parse(str);
+					// console.log(json.message);
+					frappe.set_route("Form","Contract",json.message);
+				});
+			})
+			
+		};
 
 		// if (doc.docstatus == 1 && !["Lost", "Ordered"].includes(doc.status)) {
 		// 	if (frappe.boot.sysdefaults.allow_sales_order_creation_for_expired_quotation

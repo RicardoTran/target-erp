@@ -4,6 +4,7 @@
 
 import frappe
 import uuid
+from datetime import date
 from frappe import _
 from frappe import publish_progress
 from frappe.core.api.file import create_new_folder
@@ -245,6 +246,31 @@ class Quotation(SellingController):
 				frappe.msgprint('Gửi SMS thất bại.')
 		else:
 			frappe.msgprint(_("Could not find mobile phone to send information"))
+	
+	@frappe.whitelist()
+	def create_contract(self):
+		# Nam ket thuc
+		to_year = 1900
+		for items in self.items:
+			to_year = items.to_year
+		# Tao hop dong
+		ct = frappe.new_doc('Contract')
+		ct.party_type = "Customer"
+		ct.party_name = self.party_name
+		ct.report_end_date = date(to_year,12,31)
+		ct.date = date.today()
+		ct.deadline = 15
+		ct.represent_name = self.represent_name
+		ct.position = self.position
+		ct.contact_mobile = self.contact_mobile
+		ct.contact_email = self.contact_email
+		ct.document_type = self.doctype
+		ct.document_name = self.name
+		ct.insert()
+		# Luu hop dong
+		self.contract = ct.name
+		self.save(ignore_version=True)
+		return ct.name
 
 	@frappe.whitelist()
 	def declare_enquiry_lost(self, lost_reasons_list, competitors, detailed_reason=None):

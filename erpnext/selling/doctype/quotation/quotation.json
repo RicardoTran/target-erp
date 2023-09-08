@@ -142,6 +142,7 @@
   "enq_det",
   "approval_id",
   "connections_tab",
+  "contract",
   "workflow_state",
   "comment_flag"
  ],
@@ -1162,13 +1163,20 @@
    "fieldname": "create_pdf",
    "fieldtype": "Button",
    "label": "Create PDF"
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "label": "Contract",
+   "options": "Contract",
+   "read_only": 1
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-25 23:55:52.396785",
+ "modified": "2023-09-08 14:39:03.810455",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
