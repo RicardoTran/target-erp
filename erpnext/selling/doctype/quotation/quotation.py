@@ -5,6 +5,7 @@
 import frappe
 import uuid
 from datetime import date
+from num2words import num2words
 from frappe import _
 from frappe import publish_progress
 from frappe.core.api.file import create_new_folder
@@ -353,6 +354,14 @@ class Quotation(SellingController):
 	@frappe.whitelist()
 	def attach_pdf(doc, event=None):
 		template_to_pdf(doc, event=None)
+	
+	@frappe.whitelist()
+	def update_in_words(doc, event=None):
+		words_vn = num2words(doc.grand_total, lang='vi').capitalize()+" đồng"
+		words_en = num2words(doc.grand_total, lang='en').capitalize()+" dong"
+		doc.in_words_vn = words_vn
+		doc.in_words_en = words_en
+		doc.save()
 
 def get_list_context(context=None):
 	from erpnext.controllers.website_list_for_contact import get_list_context

@@ -20,9 +20,12 @@
   "fulfilment_status",
   "section_break_3sahg",
   "represent_name",
-  "contact_mobile",
+  "poa_no",
   "column_break_1xu1q",
   "position",
+  "section_break_onxor",
+  "contact_mobile",
+  "column_break_1c76y",
   "contact_email",
   "section_break_tjvvz",
   "print_template",
@@ -374,11 +377,24 @@
    "hidden": 1,
    "label": "Comment Flag",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_onxor",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_1c76y",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "poa_no",
+   "fieldtype": "Data",
+   "label": "POA No"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-08 00:33:42.834518",
+ "modified": "2023-09-11 18:59:51.964909",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",

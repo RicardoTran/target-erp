@@ -70,6 +70,7 @@
   "grand_total",
   "rounding_adjustment",
   "rounded_total",
+  "in_words_vn",
   "in_words",
   "section_break_44",
   "apply_discount_on",
@@ -144,7 +145,8 @@
   "connections_tab",
   "contract",
   "workflow_state",
-  "comment_flag"
+  "comment_flag",
+  "in_words_en"
  ],
  "fields": [
   {
@@ -745,8 +747,10 @@
    "width": "200px"
   },
   {
+   "depends_on": "0",
    "fieldname": "in_words",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "In Words",
    "length": 240,
    "oldfieldname": "in_words_export",
@@ -1165,10 +1169,25 @@
    "label": "Create PDF"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contract",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Contract",
    "options": "Contract",
+   "read_only": 1
+  },
+  {
+   "fieldname": "in_words_vn",
+   "fieldtype": "Data",
+   "label": "In Words",
+   "read_only": 1
+  },
+  {
+   "fieldname": "in_words_en",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "In Words EN",
    "read_only": 1
   }
  ],
@@ -1176,7 +1195,7 @@
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-08 14:39:03.810455",
+ "modified": "2023-09-11 18:49:34.914709",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
