@@ -74,6 +74,7 @@
   "tax_category",
   "tax_withholding_category",
   "accounting_tab",
+  "bank_account",
   "credit_limit_section",
   "payment_terms",
   "credit_limits",
@@ -646,6 +647,12 @@
    "fieldtype": "Small Text",
    "label": "Company Address Chinese",
    "max_height": "72px"
+  },
+  {
+   "fieldname": "bank_account",
+   "fieldtype": "Small Text",
+   "label": "Bank Account",
+   "max_height": "72px"
   }
  ],
  "icon": "fa fa-user",
@@ -659,7 +666,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-07-13 16:28:44.896624",
+ "modified": "2023-09-11 18:16:05.139407",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",

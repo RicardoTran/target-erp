@@ -86,6 +86,12 @@ frappe.ui.form.on('Quotation', {
 			// }
 		  })
 		frm.reload_doc()	  
+	},
+	after_save: function(frm) {
+		frappe.call({
+			doc: frm.doc,
+			method: 'update_in_words'
+		  })
 	}
 });
 
