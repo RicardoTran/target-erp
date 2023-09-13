@@ -256,6 +256,7 @@ class Quotation(SellingController):
 			to_year = items.to_year
 		# Tao hop dong
 		ct = frappe.new_doc('Contract')
+		ct.naming_series = self.name.replace('BG-TARGET', 'HD-TARGET')
 		ct.party_type = "Customer"
 		ct.party_name = self.party_name
 		ct.report_end_date = date(to_year,12,31)
