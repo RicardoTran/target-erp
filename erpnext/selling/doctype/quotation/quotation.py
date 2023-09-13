@@ -252,8 +252,10 @@ class Quotation(SellingController):
 	def create_contract(self):
 		# Nam ket thuc
 		to_year = 1900
+		year_text = ""
 		for items in self.items:
 			to_year = items.to_year
+			year_text = items.year_text
 		# Tao hop dong
 		ct = frappe.new_doc('Contract')
 		ct.contract_number = self.name.replace('BG-TARGET', 'HD-TARGET')
@@ -268,6 +270,7 @@ class Quotation(SellingController):
 		ct.contact_email = self.contact_email
 		ct.document_type = self.doctype
 		ct.document_name = self.name
+		ct.year_text = year_text
 		ct.insert()
 		# Luu hop dong
 		self.contract = ct.name
