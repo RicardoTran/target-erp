@@ -59,7 +59,8 @@
   "cb_links",
   "document_name",
   "amended_from",
-  "comment_flag"
+  "comment_flag",
+  "year_text"
  ],
  "fields": [
   {
@@ -388,11 +389,18 @@
    "print_hide": 1,
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "year_text",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Year Text",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-13 14:32:40.589051",
+ "modified": "2023-09-13 16:00:52.798186",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",
