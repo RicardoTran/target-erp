@@ -59,7 +59,8 @@
   "approval_id",
   "amended_from",
   "comment_flag",
-  "year_text"
+  "year_text",
+  "end_year"
  ],
  "fields": [
   {
@@ -271,6 +272,7 @@
    "label": "Authorised By"
   },
   {
+   "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date",
@@ -391,11 +393,18 @@
    "hidden": 1,
    "label": "Year Text",
    "read_only": 1
+  },
+  {
+   "fieldname": "end_year",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "End Year",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-21 11:35:17.549125",
+ "modified": "2023-09-22 18:00:21.166516",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",

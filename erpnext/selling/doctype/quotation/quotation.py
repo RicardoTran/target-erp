@@ -261,8 +261,7 @@ class Quotation(SellingController):
 		ct.contract_number = self.name.replace('BG-TARGET', 'HD-TARGET')
 		ct.party_type = "Customer"
 		ct.party_name = self.party_name
-		ct.report_end_date = date(to_year,12,31)
-		ct.date = date.today()
+		ct.end_year = date(to_year,12,31)
 		ct.deadline = 15
 		ct.represent_name = self.represent_name
 		ct.position = self.position
@@ -271,6 +270,7 @@ class Quotation(SellingController):
 		ct.document_type = self.doctype
 		ct.document_name = self.name
 		ct.year_text = year_text
+		ct.end_year = to_year
 		ct.insert()
 		# Luu hop dong
 		self.contract = ct.name
