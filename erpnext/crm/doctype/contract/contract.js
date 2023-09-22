@@ -80,12 +80,12 @@ frappe.ui.form.on("Contract", {
 			frm.set_value('year_text','')
 		} else {
 			if (frm.doc.document_type == "Quotation") {
-				let end_date = new Date(ref.items[0].to_year,11,31)
-				let date_now = new Date()
 				frm.call("link_quotation_data").then((r) =>{
 					var str = JSON.stringify(r)
 					var json = JSON.parse(str)
 					var ref = json.message
+					var end_date = new Date(ref.items[0].to_year,11,31)
+					var date_now = new Date()
 					frm.set_value('contract_number',ref.name.replace('BG-TARGET', 'HD-TARGET'))
 					frm.set_value('party_type','Customer')
 					frm.set_value('party_name',ref.party_name)
@@ -97,6 +97,7 @@ frappe.ui.form.on("Contract", {
 					frm.set_value('contact_mobile',ref.contact_mobile)
 					frm.set_value('contact_email',ref.contact_email)
 					frm.set_value('year_text',ref.year_text)
+					frm.refresh()
 				})
 			}
 		}
