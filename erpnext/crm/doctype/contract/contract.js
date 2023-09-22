@@ -83,11 +83,10 @@ frappe.ui.form.on("Contract", {
 					var str = JSON.stringify(r)
 					var json = JSON.parse(str)
 					var ref = json.message
-					var end_date = new Date(ref.items[0].to_year,11,31)
 					frm.set_value('contract_number',ref.name.replace('BG-TARGET', 'HD-TARGET'))
 					frm.set_value('party_type','Customer')
 					frm.set_value('party_name',ref.party_name)
-					frm.set_value('report_end_date',end_date)
+					frm.set_value('report_end_date',ref.items[0].to_year + '-12-31')
 					frm.set_value('deadline',15)
 					frm.set_value('represent_name',ref.represent_name)
 					frm.set_value('position',ref.position)
