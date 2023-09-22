@@ -171,8 +171,8 @@ class Contract(Document):
 	def update_ref_quotation(self):
 		ref = frappe.get_doc('Quotation',self.document_name)
 		if not ref.contract:
-			ref.contract = self.contract_number
-			ref.save()
+			ref.contract = self.name
+			ref.save(ignore_permissions=True)
 
 def get_status(start_date, end_date):
 	"""
