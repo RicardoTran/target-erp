@@ -66,30 +66,31 @@ frappe.ui.form.on("Contract", {
 		frm.set_value('document_name','')
 	},
 	document_name: function(frm) {
-		if (frm.doc.document_type == "Quotation") {
-			if(frm.doc.document_name == '') {
-				frm.set_value('contract_number','')
-				frm.set_value('party_type','Customer')
-				frm.set_value('party_name','')
-				frm.set_value('report_end_date','')
-				frm.set_value('date','')
-				frm.set_value('deadline','')
-				frm.set_value('represent_name','')
-				frm.set_value('position','')
-				frm.set_value('contact_mobile','')
-				frm.set_value('contact_email','')
-				frm.set_value('year_text','')
-		} else
-			{
+		if (frm.doc.document_name == '') {
+			frm.set_value('contract_number','')
+			frm.set_value('party_type','Customer')
+			frm.set_value('party_name','')
+			frm.set_value('report_end_date','')
+			frm.set_value('date','')
+			frm.set_value('deadline','')
+			frm.set_value('represent_name','')
+			frm.set_value('position','')
+			frm.set_value('contact_mobile','')
+			frm.set_value('contact_email','')
+			frm.set_value('year_text','')
+		} else {
+			if (frm.doc.document_type == "Quotation") {
 				frm.call("link_quotation_data").then((r) =>{
 					var str = JSON.stringify(r)
 					var json = JSON.parse(str)
 					var ref = json.message
+					var end_date = new Date(ref.items[0].to_year,11,31)
+					var date_now = new Date()
 					frm.set_value('contract_number',ref.name.replace('BG-TARGET', 'HD-TARGET'))
 					frm.set_value('party_type','Customer')
 					frm.set_value('party_name',ref.party_name)
-					frm.set_value('report_end_date',new Date(ref.items[0].to_year,11,31))
-					frm.set_value('date',new Date())
+					frm.set_value('report_end_date',end_date)
+					frm.set_value('date',date_now)
 					frm.set_value('deadline',15)
 					frm.set_value('represent_name',ref.represent_name)
 					frm.set_value('position',ref.position)
