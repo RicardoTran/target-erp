@@ -122,9 +122,9 @@ frappe.ui.form.on("Contract", {
 		  })
 		frm.reload_doc()	  
 	},
-	before_save: function(frm) {
+	after_save: function(frm) {
 		frm.call("update_ref_quotation").then((r) =>{
-			console.log(r)
+			// console.log(r)
 		})
 	}
 });
