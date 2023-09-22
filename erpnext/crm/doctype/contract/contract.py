@@ -162,6 +162,17 @@ class Contract(Document):
 	def attach_pdf(doc, event=None):
 		template_to_pdf(doc, event=None)
 
+	@frappe.whitelist()
+	def link_quotation_data(self):
+		ref = frappe.get_doc('Quotation',self.document_name)
+		return ref
+	
+	@frappe.whitelist()
+	def update_ref_quotation(self):
+		ref = frappe.get_doc('Quotation',self.document_name)
+		if not ref.contract:
+			ref.contract = self.contract_number
+			ref.save()
 
 def get_status(start_date, end_date):
 	"""

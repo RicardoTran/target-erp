@@ -7,11 +7,13 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "document_type",
   "contract_number",
   "date",
   "report_end_date",
   "is_signed",
   "cb_party",
+  "document_name",
   "party_type",
   "party_name",
   "deadline",
@@ -54,10 +56,7 @@
   "signee_company",
   "signed_by_company",
   "sb_references",
-  "document_type",
   "approval_id",
-  "cb_links",
-  "document_name",
   "amended_from",
   "comment_flag",
   "year_text"
@@ -236,10 +235,6 @@
    "options": "\nQuotation\nProject\nSales Order\nPurchase Order\nSales Invoice\nPurchase Invoice"
   },
   {
-   "fieldname": "cb_links",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "document_name",
    "fieldtype": "Dynamic Link",
    "in_global_search": 1,
@@ -400,7 +395,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-13 16:00:52.798186",
+ "modified": "2023-09-21 11:35:17.549125",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",
