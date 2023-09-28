@@ -26,6 +26,7 @@
   "valid_till",
   "amended_from",
   "section_break_cpe4l",
+  "task_template",
   "task_description",
   "currency_and_price_list",
   "currency",
@@ -1106,10 +1107,12 @@
   },
   {
    "fieldname": "position",
-   "fieldtype": "Data",
-   "label": "Position"
+   "fieldtype": "Link",
+   "label": "Position",
+   "options": "Position"
   },
   {
+   "fetch_from": "task_template.description",
    "fieldname": "task_description",
    "fieldtype": "Small Text",
    "label": "Task Description"
@@ -1190,13 +1193,19 @@
    "hidden": 1,
    "label": "In Words EN",
    "read_only": 1
+  },
+  {
+   "fieldname": "task_template",
+   "fieldtype": "Link",
+   "label": "Task Template",
+   "options": "Job Description"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-22 18:27:22.511577",
+ "modified": "2023-09-28 10:22:57.064557",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",

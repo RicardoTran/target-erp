@@ -18,7 +18,6 @@
   "terms",
   "terms_en",
   "terms_cn",
-  "terms_vi_cn",
   "terms_and_conditions_help"
  ],
  "fields": [
@@ -85,17 +84,12 @@
    "fieldname": "terms_cn",
    "fieldtype": "Text Editor",
    "label": "Terms and Conditions Chinese"
-  },
-  {
-   "fieldname": "terms_vi_cn",
-   "fieldtype": "Text Editor",
-   "label": "Terms and Conditions Vietnamese-Chinese"
   }
  ],
  "icon": "icon-legal",
  "idx": 1,
  "links": [],
- "modified": "2023-07-17 15:28:47.006610",
+ "modified": "2023-09-28 10:29:37.538359",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Terms and Conditions",
