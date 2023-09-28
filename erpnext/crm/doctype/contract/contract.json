@@ -311,8 +311,9 @@
   },
   {
    "fieldname": "position",
-   "fieldtype": "Data",
-   "label": "Position"
+   "fieldtype": "Link",
+   "label": "Position",
+   "options": "Position"
   },
   {
    "fieldname": "contact_email",
@@ -406,7 +407,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-22 21:38:16.623296",
+ "modified": "2023-09-28 10:51:43.174521",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",
