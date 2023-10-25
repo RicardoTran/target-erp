@@ -17,6 +17,10 @@
   "lft",
   "rgt",
   "old_parent",
+  "section_break_bacsm",
+  "email",
+  "column_break_64fgx",
+  "mobile",
   "target_details_section_break",
   "targets"
  ],
@@ -116,13 +120,33 @@
    "oldfieldname": "target_details",
    "oldfieldtype": "Table",
    "options": "Target Detail"
+  },
+  {
+   "fieldname": "section_break_bacsm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "column_break_64fgx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile",
+   "options": "Phone"
   }
  ],
  "icon": "fa fa-map-marker",
  "idx": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2023-07-03 18:57:44.423349",
+ "modified": "2023-10-25 21:56:24.973572",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Territory",
