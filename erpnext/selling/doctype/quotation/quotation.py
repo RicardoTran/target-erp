@@ -524,7 +524,6 @@ def set_expired_status():
 def make_sales_invoice(source_name, target_doc=None):
 	return _make_sales_invoice(source_name, target_doc)
 
-
 def _make_sales_invoice(source_name, target_doc=None, ignore_permissions=False):
 	customer = _make_customer(source_name, ignore_permissions)
 

@@ -54,6 +54,31 @@ frappe.ui.form.on('Quotation', {
 		frm.trigger("set_dynamic_field_label");
 	},
 
+	party_name: function(frm) {
+		if (frm.doc.party_name) {
+			var ref
+			frappe.call({
+				method: "frappe.client.get",
+				args: {
+					doctype: "Customer",
+					name: frm.doc.party_name,
+				},
+				callback: function(r) {
+					if (r && r.message) {
+						let ref = r.message
+						console.log(ref)
+						frm.set_value('represent_name',ref.represent_name)
+						frm.set_value('position',ref.position)
+					}
+				}
+			})
+		}
+		else {
+			frm.set_value('represent_name','')
+			frm.set_value('position','')
+		}
+	},
+
 	before_workflow_action: (frm) => {
 		frappe.dom.unfreeze()
 		if (frm.doc.workflow_state == "Draft") {
