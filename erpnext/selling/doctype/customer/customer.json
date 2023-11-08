@@ -67,6 +67,10 @@
   "customer_primary_contact",
   "mobile_no",
   "email_id",
+  "section_break_6qmf8",
+  "represent_name",
+  "column_break_o5gnd",
+  "position",
   "tax_tab",
   "taxation_section",
   "tax_id",
@@ -653,6 +657,25 @@
    "fieldtype": "Small Text",
    "label": "Bank Account",
    "max_height": "72px"
+  },
+  {
+   "fieldname": "section_break_6qmf8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_o5gnd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Link",
+   "label": "Position",
+   "options": "Position"
+  },
+  {
+   "fieldname": "represent_name",
+   "fieldtype": "Data",
+   "label": "Represent Name"
   }
  ],
  "icon": "fa fa-user",
@@ -666,7 +689,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-10-25 14:22:49.496172",
+ "modified": "2023-11-08 10:25:17.088045",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
