@@ -694,8 +694,9 @@ def make_contact(args, is_primary_contact=1):
 		contact.add_email(args.get("email_id"), is_primary=True)
 	if args.get("mobile_no"):
 		contact.add_phone(args.get("mobile_no"), is_primary_mobile_no=True)
-	contact.insert()
-
+	contact_exits = frappe.db.get_value('Contact',args.get("name") + "-" + args.get("name"),'name')
+	if not contact_exits:
+		contact.insert()
 	return contact
 
 
