@@ -23,7 +23,7 @@
   "full_name",
   "company_name",
   "company_type",
-  "company_address",
+  "company_address_vn",
   "total_year_audited",
   "first_year_audit",
   "section_break_yj0sz",
@@ -583,14 +583,6 @@
   {
    "allow_in_quick_entry": 1,
    "depends_on": "eval:doc.customer_type == 'Company'",
-   "fieldname": "company_address",
-   "fieldtype": "Small Text",
-   "label": "Company Address",
-   "max_height": "72px"
-  },
-  {
-   "allow_in_quick_entry": 1,
-   "depends_on": "eval:doc.customer_type == 'Company'",
    "fieldname": "company_type",
    "fieldtype": "Link",
    "label": "Company Type",
@@ -676,6 +668,14 @@
    "fieldname": "represent_name",
    "fieldtype": "Data",
    "label": "Represent Name"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.customer_type == 'Company'",
+   "fieldname": "company_address_vn",
+   "fieldtype": "Small Text",
+   "label": "Company Address",
+   "max_height": "72px"
   }
  ],
  "icon": "fa fa-user",
@@ -689,7 +689,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-11-08 10:25:17.088045",
+ "modified": "2023-11-21 06:35:00.662136",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
