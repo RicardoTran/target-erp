@@ -30,6 +30,7 @@
    "label": "Full Name"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "phone",
    "fieldtype": "Data",
    "label": "Phone",
@@ -46,6 +47,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "email",
    "fieldtype": "Data",
    "label": "Email",
@@ -54,7 +56,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-20 22:02:46.237750",
+ "modified": "2023-11-20 22:40:41.070363",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Contact Support",
