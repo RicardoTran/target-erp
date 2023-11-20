@@ -91,6 +91,7 @@
   "billing_address_section",
   "customer_address",
   "address_display",
+  "contact_support",
   "phone_number_quote",
   "col_break98",
   "contact_person",
@@ -1122,7 +1123,7 @@
    "fieldtype": "Section Break"
   },
   {
-   "fetch_from": "company.phone_no",
+   "fetch_from": "contact_support.phone",
    "fetch_if_empty": 1,
    "fieldname": "phone_number_quote",
    "fieldtype": "Data",
@@ -1199,13 +1200,20 @@
    "fieldtype": "Link",
    "label": "Task Template",
    "options": "Job Description"
+  },
+  {
+   "default": "A Vi\u1ec7t",
+   "fieldname": "contact_support",
+   "fieldtype": "Link",
+   "label": "Contact Support",
+   "options": "Contact Support"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-25 21:02:57.757342",
+ "modified": "2023-11-20 22:07:30.909555",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
