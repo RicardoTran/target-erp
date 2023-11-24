@@ -10,8 +10,9 @@
   "title",
   "column_break_84smc",
   "reference_type",
+  "template",
   "section_break_o2tmj",
-  "content"
+  "body"
  ],
  "fields": [
   {
@@ -29,21 +30,26 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "content",
-   "fieldtype": "Small Text",
-   "label": "Content"
-  },
-  {
    "fieldname": "reference_type",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Reference Type",
    "options": "DocType"
+  },
+  {
+   "fieldname": "template",
+   "fieldtype": "Data",
+   "label": "Template"
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "Text",
+   "label": "Body"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-12 16:33:53.092592",
+ "modified": "2023-11-24 10:11:34.187416",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Push SMS Template",

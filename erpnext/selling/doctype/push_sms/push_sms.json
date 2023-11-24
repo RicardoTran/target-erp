@@ -15,7 +15,7 @@
   "reference_name",
   "url",
   "section_break_qnzxq",
-  "content",
+  "body",
   "amended_from"
  ],
  "fields": [
@@ -26,11 +26,6 @@
    "label": "Phone Number",
    "options": "Phone",
    "reqd": 1
-  },
-  {
-   "fieldname": "content",
-   "fieldtype": "Small Text",
-   "label": "Content"
   },
   {
    "default": "0",
@@ -79,11 +74,16 @@
    "fieldtype": "Int",
    "label": "Result",
    "read_only": 1
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "Text",
+   "label": "Body"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 16:02:13.014877",
+ "modified": "2023-11-24 10:09:57.435852",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Push SMS",

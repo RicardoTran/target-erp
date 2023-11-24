@@ -19,10 +19,6 @@ class PushEmail(Document):
 		api_key = "Bearer " + api_key
 		from_email = frappe.db.get_single_value("Push Email Settings","from_email")
 
-		#Get template
-		template = frappe.db.get_value('Push Email Template', {'reference_type':self.reference_type}, ['subject','body'], as_dict=1)
-		body = template.body.replace('{{link}}', self.link)
-		body = body.replace('{{link_name}}', self.reference_name)
 		to_email = self.to_email.replace(" ", "").strip().split(",")
 
 		#Send email
@@ -31,8 +27,8 @@ class PushEmail(Document):
 		payload = json.dumps({
 		"from": from_email,
 		"to": to_email,
-		"subject": template.subject,
-		"html": body
+		"subject": self.subject,
+		"html": self.body
 		})
 		headers = {
 		'Content-Type': 'application/json',
@@ -52,8 +48,6 @@ class PushEmail(Document):
 
 		#Update
 		self.from_email = from_email
-		self.subject = template.subject
-		self.body = body
 		if 'id' in response.text:
 			self.send_id = jsonstr["id"]
 		self.save(ignore_permissions=True)

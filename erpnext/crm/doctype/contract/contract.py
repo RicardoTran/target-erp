@@ -95,9 +95,49 @@ class Contract(Document):
 				str_uuid = str(uuid.uuid4())
 				self.approval_id = str_uuid
 				self.save()
-			approval_url = frappe.db.get_single_value("Approval Settings","approval_url") + "/contract/" + self.approval_id
+			approval_url = frappe.db.get_single_value("Approval Settings","approval_url") + "/contract/" + self.approval_id  
+
+			#Get template
+			template = frappe.db.get_value('Push Email Template', {'reference_type':'Contract','template':'MAU-001'}, ['subject','body'], as_dict=1)
+			body = template.body.replace('{{link}}', approval_url)
+			body = body.replace('{{link_name}}', self.name)
+
+			#customer
+			refCongty = frappe.get_doc('Customer', self.party_name)
+			body = body.replace('{{company_name}}', refCongty.company_name)
+
+
+			#Quotation
+			refQuote = frappe.get_doc('Quotation', self.document_name)
+			body = body.replace('{{task_name}}', refQuote.task_description)
+			body = body.replace('{{yyyy}}', refQuote.items[0].year_text)
+
+			#sign
+			refSign = frappe.get_doc('Territory', refCongty.territory)
+			if not refSign.full_name:
+				body = body.replace('{{full_name}}', '')
+			else:
+				body = body.replace('{{full_name}}', refSign.full_name)
+
+			if not refSign.position:
+				body = body.replace('{{position}}', '')
+			else:
+				body = body.replace('{{position}}', refSign.position)
+
+			if not refSign.email:
+				body = body.replace('{{email}}', '')
+			else:
+				body = body.replace('{{email}}', 'Email: ' + refSign.email)
+
+			if not refSign.mobile:
+				body = body.replace('{{mobile}}', '')
+			else:
+				body = body.replace('{{mobile}}', 'Mobiphone: ' + refSign.mobile)
+
 			push_email = frappe.new_doc('Push Email')
 			push_email.to_email = self.contact_email
+			push_email.subject = template.subject
+			push_email.body = body
 			push_email.reference_type = "Contract"
 			push_email.reference_name = self.name
 			push_email.link = approval_url
@@ -131,8 +171,48 @@ class Contract(Document):
 				self.approval_id = str_uuid
 				self.save()
 			approval_url = frappe.db.get_single_value("Approval Settings","approval_url") + "/contract/" + self.approval_id
+
+			#Get template
+			template = frappe.db.get_value('Push SMS Template', {'reference_type':'Contract','template':'MAU-001'}, ['body'], as_dict=1)
+			body = template.body.replace('{{link}}', approval_url)
+			body = body.replace('{{link_name}}', self.name)
+
+			#customer
+			refCongty = frappe.get_doc('Customer', self.party_name)
+			body = body.replace('{{company_name}}', refCongty.company_name)
+
+
+			#Quotation
+			refQuote = frappe.get_doc('Quotation', self.document_name)
+			body = body.replace('{{task_name}}', refQuote.task_description)
+			body = body.replace('{{yyyy}}', refQuote.items[0].year_text)
+
+			#sign
+			refSign = frappe.get_doc('Territory', refCongty.territory)
+			if not refSign.full_name:
+				body = body.replace('{{full_name}}', '')
+			else:
+				body = body.replace('{{full_name}}', refSign.full_name)
+
+			if not refSign.position:
+				body = body.replace('{{position}}', '')
+			else:
+				body = body.replace('{{position}}', refSign.position)
+
+			if not refSign.email:
+				body = body.replace('{{email}}', '')
+			else:
+				body = body.replace('{{email}}', 'Email: ' + refSign.email)
+
+			if not refSign.mobile:
+				body = body.replace('{{mobile}}', '')
+			else:
+				body = body.replace('{{mobile}}', 'Mobiphone: ' + refSign.mobile)
+
 			push_sms = frappe.new_doc('Push SMS')
 			push_sms.phone_number = self.contact_mobile.replace('0','84', 1).replace(' ','')
+			push_sms.body = body
+			push_sms.unicode_char = 0
 			push_sms.reference_type = "Contract"
 			push_sms.reference_name = self.name
 			push_sms.url = approval_url

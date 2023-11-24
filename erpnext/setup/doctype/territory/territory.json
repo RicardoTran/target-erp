@@ -18,8 +18,10 @@
   "rgt",
   "old_parent",
   "section_break_bacsm",
+  "full_name",
   "email",
   "column_break_64fgx",
+  "position",
   "mobile",
   "target_details_section_break",
   "targets"
@@ -140,13 +142,23 @@
    "fieldtype": "Data",
    "label": "Mobile",
    "options": "Phone"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Data",
+   "label": "Position"
   }
  ],
  "icon": "fa fa-map-marker",
  "idx": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2023-10-25 21:56:24.973572",
+ "modified": "2023-11-23 21:50:18.154473",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Territory",
