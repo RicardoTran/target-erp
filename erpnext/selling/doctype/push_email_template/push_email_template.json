@@ -10,6 +10,7 @@
   "title",
   "column_break_mhvfc",
   "reference_type",
+  "template",
   "section_break_iky7n",
   "subject",
   "body"
@@ -47,11 +48,16 @@
    "fieldname": "body",
    "fieldtype": "HTML Editor",
    "label": "Body"
+  },
+  {
+   "fieldname": "template",
+   "fieldtype": "Data",
+   "label": "Template"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-12 16:37:45.998161",
+ "modified": "2023-11-23 22:30:18.305696",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Push Email Template",
