@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "field:contract_number",
  "creation": "2018-04-12 06:32:04.582486",
  "doctype": "DocType",
@@ -407,7 +408,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-28 10:51:43.174521",
+ "modified": "2023-12-01 10:51:40.918764",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",
