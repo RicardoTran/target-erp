@@ -14,6 +14,7 @@ from frappe.utils.weasyprint import PrintFormatGenerator
 from frappe.model.naming import _format_autoname
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils import flt, getdate, nowdate
+from datetime import datetime
 
 from erpnext.controllers.selling_controller import SellingController
 
@@ -431,6 +432,16 @@ class Quotation(SellingController):
 	@frappe.whitelist()
 	def attach_pdf(doc, event=None):
 		template_to_pdf(doc, event=None)
+
+	@frappe.whitelist()
+	def	make_quotation_number(doc, event=None):
+		mm_yyyy = datetime.today().strftime("%m-%Y")
+		searchStr = '%' + mm_yyyy + '/BG-TARGET'
+		result = frappe.db.sql(f"""SELECT Max(name) as QuoteNum FROM `tabQuotation` WHERE `name` LIKE '{searchStr}'""")
+		if result == '((None,),)':
+			return "0001" + '-' + mm_yyyy + '/BG-TARGET'
+		else:
+			return str(int(str(result)[3:7])+1).zfill(4) + '-' + mm_yyyy + '/BG-TARGET'
 	
 	@frappe.whitelist()
 	def update_in_words(doc, event=None):
