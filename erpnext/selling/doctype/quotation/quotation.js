@@ -41,17 +41,20 @@ frappe.ui.form.on('Quotation', {
 				}
 			}
 		}
-		//Set so bao gia
-		frm.call("make_quotation_number").then((r) =>{
-			frm.set_value("quotation_number",r.message)
-		});
 	},
 
 	refresh: function(frm) {
 		frm.trigger("set_label");
 		frm.trigger("set_dynamic_field_label");
 	},
-
+	onload: function(frm) {
+		//Set so bao gia
+		if (frm.is_new()) {
+			frm.call("make_quotation_number").then((r) =>{
+				frm.set_value("quotation_number",r.message)
+			});
+		}
+	},
 	quotation_to: function(frm) {
 		frm.trigger("set_label");
 		frm.trigger("toggle_reqd_lead_customer");
