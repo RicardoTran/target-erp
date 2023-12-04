@@ -41,6 +41,10 @@ frappe.ui.form.on('Quotation', {
 				}
 			}
 		}
+		//Set so bao gia
+		frm.call("make_quotation_number").then((r) =>{
+			frm.set_value("quotation_number",r.message)
+		});
 	},
 
 	refresh: function(frm) {
