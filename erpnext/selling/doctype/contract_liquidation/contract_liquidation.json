@@ -1,0 +1,182 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-12-21 21:53:16.328706",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "cl_number",
+  "customer",
+  "represent_name",
+  "column_break_1cj0y",
+  "date",
+  "contract_number",
+  "amended_from",
+  "position",
+  "section_break_6ghsd",
+  "contact_mobile_no",
+  "column_break_vye55",
+  "contact_email",
+  "section_break_7hat1",
+  "print_template",
+  "create_pdf",
+  "section_break_0sshy",
+  "unsigned_file",
+  "column_break_qxbip",
+  "signed_file",
+  "references_section",
+  "approval_id",
+  "comment_flag"
+ ],
+ "fields": [
+  {
+   "fieldname": "cl_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "CL Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "column_break_1cj0y",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_number",
+   "fieldtype": "Link",
+   "label": "Contract Number",
+   "options": "Contract"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Contract Liquidation",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "represent_name",
+   "fieldtype": "Data",
+   "label": "Represent Name"
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Link",
+   "label": "Position",
+   "options": "Position"
+  },
+  {
+   "fieldname": "section_break_6ghsd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "contact_mobile_no",
+   "fieldtype": "Data",
+   "label": "Contact Mobile No",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "column_break_vye55",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Contact Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "section_break_7hat1",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "print_template",
+   "fieldtype": "Link",
+   "label": "Print Template",
+   "options": "Print Format"
+  },
+  {
+   "depends_on": "eval:doc.print_template && !doc.__islocal && !doc.unsigned_file",
+   "fieldname": "create_pdf",
+   "fieldtype": "Button",
+   "label": "Create PDF"
+  },
+  {
+   "fieldname": "section_break_0sshy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "unsigned_file",
+   "fieldtype": "Attach",
+   "label": "Unsigned File"
+  },
+  {
+   "fieldname": "column_break_qxbip",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "signed_file",
+   "fieldtype": "Attach",
+   "label": "Signed File"
+  },
+  {
+   "fieldname": "references_section",
+   "fieldtype": "Section Break",
+   "label": "References"
+  },
+  {
+   "fieldname": "approval_id",
+   "fieldtype": "Data",
+   "label": "Approval ID"
+  },
+  {
+   "fieldname": "comment_flag",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Comment Flag"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-12-21 22:05:51.796383",
+ "modified_by": "Administrator",
+ "module": "Selling",
+ "name": "Contract Liquidation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
