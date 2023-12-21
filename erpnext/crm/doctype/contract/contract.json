@@ -58,6 +58,7 @@
   "signed_by_company",
   "sb_references",
   "approval_id",
+  "contract_liquidation",
   "amended_from",
   "comment_flag",
   "year_text",
@@ -404,11 +405,17 @@
    "hidden": 1,
    "label": "End Year",
    "read_only": 1
+  },
+  {
+   "fieldname": "contract_liquidation",
+   "fieldtype": "Link",
+   "label": "Contract Liquidation",
+   "options": "Contract Liquidation"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-01 10:51:40.918764",
+ "modified": "2023-12-21 22:26:07.900103",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",

@@ -7,12 +7,12 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "cl_number",
+  "contract_number",
   "customer",
   "represent_name",
   "column_break_1cj0y",
+  "cl_number",
   "date",
-  "contract_number",
   "amended_from",
   "position",
   "section_break_6ghsd",
@@ -42,7 +42,8 @@
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",
-   "options": "Customer"
+   "options": "Customer",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_1cj0y",
@@ -59,7 +60,8 @@
    "fieldname": "contract_number",
    "fieldtype": "Link",
    "label": "Contract Number",
-   "options": "Contract"
+   "options": "Contract",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -157,7 +159,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-21 22:05:51.796383",
+ "modified": "2023-12-21 22:41:01.460581",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Contract Liquidation",
@@ -172,6 +174,42 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Master Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
    "share": 1,
    "write": 1
   }
