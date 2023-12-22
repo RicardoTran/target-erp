@@ -58,6 +58,8 @@
   "signed_by_company",
   "sb_references",
   "approval_id",
+  "column_break_gviyp",
+  "contract_liquidation",
   "amended_from",
   "comment_flag",
   "year_text",
@@ -404,11 +406,22 @@
    "hidden": 1,
    "label": "End Year",
    "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "contract_liquidation",
+   "fieldtype": "Link",
+   "label": "Contract Liquidation",
+   "options": "Contract Liquidation"
+  },
+  {
+   "fieldname": "column_break_gviyp",
+   "fieldtype": "Column Break"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-01 10:51:40.918764",
+ "modified": "2023-12-22 23:03:46.314267",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",
