@@ -29,7 +29,8 @@
   "signed_file",
   "references_section",
   "approval_id",
-  "comment_flag"
+  "comment_flag",
+  "year_text"
  ],
  "fields": [
   {
@@ -157,12 +158,18 @@
    "fieldtype": "Data",
    "label": "Contact Mobile No",
    "options": "Phone"
+  },
+  {
+   "fieldname": "year_text",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Year Text"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-23 12:43:45.905521",
+ "modified": "2023-12-23 13:55:05.464565",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract Liquidation",
