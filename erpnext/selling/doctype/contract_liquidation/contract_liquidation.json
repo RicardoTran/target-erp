@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:cl_number",
  "creation": "2023-12-21 21:53:16.328706",
  "default_view": "List",
  "doctype": "DocType",
@@ -16,7 +17,7 @@
   "amended_from",
   "position",
   "section_break_6ghsd",
-  "contact_mobile_no",
+  "contact_mobile",
   "column_break_vye55",
   "contact_email",
   "section_break_7hat1",
@@ -34,13 +35,14 @@
   {
    "fieldname": "cl_number",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "CL Number",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "customer",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Customer",
    "options": "Customer",
    "reqd": 1
@@ -50,6 +52,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -87,12 +90,6 @@
   {
    "fieldname": "section_break_6ghsd",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "contact_mobile_no",
-   "fieldtype": "Data",
-   "label": "Contact Mobile No",
-   "options": "Phone"
   },
   {
    "fieldname": "column_break_vye55",
@@ -154,15 +151,22 @@
    "fieldtype": "Int",
    "hidden": 1,
    "label": "Comment Flag"
+  },
+  {
+   "fieldname": "contact_mobile",
+   "fieldtype": "Data",
+   "label": "Contact Mobile No",
+   "options": "Phone"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-21 22:41:01.460581",
+ "modified": "2023-12-23 15:51:00.984635",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Contract Liquidation",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
