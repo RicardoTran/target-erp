@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:cl_number",
  "creation": "2023-12-21 21:53:16.328706",
  "default_view": "List",
  "doctype": "DocType",
@@ -34,13 +35,14 @@
   {
    "fieldname": "cl_number",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "CL Number",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "customer",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Customer",
    "options": "Customer",
    "reqd": 1
@@ -160,10 +162,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-23 12:31:06.257714",
+ "modified": "2023-12-23 12:43:45.905521",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract Liquidation",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
