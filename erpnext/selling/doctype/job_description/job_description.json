@@ -9,6 +9,9 @@
  "engine": "InnoDB",
  "field_order": [
   "title",
+  "label",
+  "label_english",
+  "label_chinese",
   "description",
   "description_english",
   "description_chinese"
@@ -37,11 +40,27 @@
    "fieldname": "description_chinese",
    "fieldtype": "Small Text",
    "label": "Description Chinese"
+  },
+  {
+   "fieldname": "label",
+   "fieldtype": "Data",
+   "label": "Label",
+   "reqd": 1
+  },
+  {
+   "fieldname": "label_english",
+   "fieldtype": "Data",
+   "label": "Label English"
+  },
+  {
+   "fieldname": "label_chinese",
+   "fieldtype": "Data",
+   "label": "Label Chinese"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-28 10:49:39.224760",
+ "modified": "2023-12-23 17:48:41.638395",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Job Description",
