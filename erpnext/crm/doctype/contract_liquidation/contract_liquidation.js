@@ -64,9 +64,9 @@ frappe.ui.form.on("Contract Liquidation", {
 						)
 					);
 				}
-				// this.frm.call("send_contract").then(() =>{
-				// frappe.msgprint(__("Email sent succesfully"));
-				// });
+				this.frm.call("send_contract_liquidation").then(() => {
+					// frappe.msgprint(__("Email sent succesfully"));
+				});
 			}
 		}
 	},

@@ -202,12 +202,12 @@ class Contract(Document):
 			if not refSign.email:
 				body = body.replace('{{email}}', '')
 			else:
-				body = body.replace('{{email}}', 'Email: ' + refSign.email)
+				body = body.replace('{{email}}', refSign.email)
 
 			if not refSign.mobile:
 				body = body.replace('{{mobile}}', '')
 			else:
-				body = body.replace('{{mobile}}', 'Mobiphone: ' + refSign.mobile)
+				body = body.replace('{{mobile}}', refSign.mobile)
 
 			push_sms = frappe.new_doc('Push SMS')
 			push_sms.phone_number = self.contact_mobile.replace('0','84', 1).replace(' ','')
