@@ -14,6 +14,7 @@
   "column_break_1cj0y",
   "cl_number",
   "date",
+  "amended_from",
   "position",
   "section_break_6ghsd",
   "contact_mobile",
@@ -28,8 +29,7 @@
   "signed_file",
   "references_section",
   "approval_id",
-  "comment_flag",
-  "amended_from"
+  "comment_flag"
  ],
  "fields": [
   {
@@ -155,14 +155,14 @@
   {
    "fieldname": "contact_mobile",
    "fieldtype": "Data",
-   "label": "Contact Mobile",
+   "label": "Contact Mobile No",
    "options": "Phone"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-22 22:49:25.269242",
+ "modified": "2023-12-23 12:43:45.905521",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract Liquidation",
