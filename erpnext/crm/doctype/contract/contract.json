@@ -28,8 +28,10 @@
   "position",
   "section_break_onxor",
   "contact_mobile",
+  "cc_mobile",
   "column_break_1c76y",
   "contact_email",
+  "cc_email",
   "section_break_tjvvz",
   "print_template",
   "create_pdf",
@@ -417,11 +419,21 @@
   {
    "fieldname": "column_break_gviyp",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cc_mobile",
+   "fieldtype": "Data",
+   "label": "CC Mobile"
+  },
+  {
+   "fieldname": "cc_email",
+   "fieldtype": "Data",
+   "label": "CC Email"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-22 23:03:46.314267",
+ "modified": "2023-12-25 22:01:25.420753",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",

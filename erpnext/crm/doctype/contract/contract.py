@@ -248,6 +248,12 @@ class Contract(Document):
 		return ref
 	
 	@frappe.whitelist()
+	def get_customer_doc(self):
+		refQuotation = frappe.get_doc('Quotation',self.document_name)
+		ref = frappe.get_doc('Customer',refQuotation.party_name)
+		return ref
+	
+	@frappe.whitelist()
 	def update_ref_quotation(self):
 		ref = frappe.get_doc('Quotation',self.document_name)
 		if not ref.contract:

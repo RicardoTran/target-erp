@@ -50,13 +50,17 @@ frappe.ui.form.on("Contract Liquidation", {
 			frm.set_value("position", ref.position);
 			frm.set_value("contact_mobile", ref.contact_mobile);
 			frm.set_value("contact_email", ref.contact_email);
-		});
-		frm.call("get_territory_doc").then((r) => {
-			var str = JSON.stringify(r);
-			var json = JSON.parse(str);
-			var ref = json.message;
-			frm.set_value("cc_mobile", ref.mobile);
-			frm.set_value("cc_email", ref.email);
+			frm.set_value("cc_mobile", ref.cc_mobile);
+			frm.set_value("cc_email", ref.cc_email);
+			if (!ref.contact_mobile && !ref.contact_email) {
+				frm.call("get_customer_doc").then((r) => {
+					var str = JSON.stringify(r);
+					var json = JSON.parse(str);
+					var ref = json.message;
+					frm.set_value("contact_mobile", ref.mobile_no);
+					frm.set_value("contact_email", ref.email_id);
+				});
+			}
 		});
 		frm.refresh();
 	},

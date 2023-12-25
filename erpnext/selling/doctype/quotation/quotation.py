@@ -480,6 +480,12 @@ class Quotation(SellingController):
 		refCustomer = frappe.get_doc("Customer",self.party_name)
 		ref = frappe.get_doc("Territory",refCustomer.territory)
 		return ref
+	
+	@frappe.whitelist()
+	def get_territory_doc(self):
+		refCustomer = frappe.get_doc("Customer",self.party_name)
+		ref = frappe.get_doc("Territory",refCustomer.territory)
+		return ref
 
 def get_list_context(context=None):
 	from erpnext.controllers.website_list_for_contact import get_list_context

@@ -63,15 +63,6 @@ frappe.ui.form.on("Contract", {
 					{
 						document_type: "Quotation Liquidation",
 						contract_number: frm.doc.name,
-						cl_number: frm.doc.name.replace(
-							"HD-TARGET",
-							"BBTL-TARGET"
-						),
-						customer: frm.doc.party_name,
-						represent_name: frm.doc.represent_name,
-						position: frm.doc.position,
-						contact_mobile: frm.doc.contact_mobile,
-						contact_email: frm.doc.contact_email,
 					},
 					(doc) => {}
 				);
@@ -111,6 +102,8 @@ frappe.ui.form.on("Contract", {
 			frm.set_value("position", "");
 			frm.set_value("contact_mobile", "");
 			frm.set_value("contact_email", "");
+			frm.set_value("cc_mobile", "");
+			frm.set_value("cc_email", "");
 			frm.set_value("year_text", "");
 		} else {
 			if (frm.doc.document_type == "Quotation") {
@@ -133,12 +126,23 @@ frappe.ui.form.on("Contract", {
 					frm.set_value("position", ref.position);
 					frm.set_value("contact_mobile", ref.contact_mobile);
 					frm.set_value("contact_email", ref.contact_email);
+					frm.set_value("cc_mobile", ref.cc_mobile);
+					frm.set_value("cc_email", ref.cc_email);
 					frm.set_value("year_text", ref.year_text);
 					frm.set_value("end_year", ref.items[0].to_year);
-					frm.refresh();
+					if (!ref.contact_mobile && !ref.contact_email) {
+						frm.call("get_customer_doc").then((r) => {
+							var str = JSON.stringify(r);
+							var json = JSON.parse(str);
+							var ref = json.message;
+							frm.set_value("contact_mobile", ref.mobile_no);
+							frm.set_value("contact_email", ref.email_id);
+						});
+					}
 				});
 			}
 		}
+		frm.refresh();
 	},
 	before_workflow_action: (frm) => {
 		frappe.dom.unfreeze();

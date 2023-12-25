@@ -175,30 +175,52 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 		};
 		if(doc.workflow_state == "Approved" && !doc.contract) {
 			this.frm.add_custom_button(__("Create Contract"), () => {
-				// this.frm.call("create_contract").then((r) =>{
-				// 	var str = JSON.stringify(r);
-				// 	var json = JSON.parse(str);
-				// 	// console.log(json.message);
-				// 	frappe.set_route("Form","Contract",json.message);
-				// });
 				var to_year = doc.items[0].to_year
-				frappe.new_doc('Contract', {
-					document_type: 'Quotation',
-					document_name: doc.name,
-					contract_number: doc.name.replace('BG-TARGET', 'HD-TARGET'),
-					party_type: 'Customer',
-					party_name: doc.party_name,
-					represent_name: doc.represent_name,
-					position: doc.position,
-					//Bỏ copy
-					// contact_mobile: doc.contact_mobile,
-					// contact_email: doc.contact_email,
-					year_text: doc.year_text,
-				}, doc => {
-					doc.deadline = 15;
-					doc.report_end_date = to_year + '-12-31';
-					doc.end_year = to_year
-				})
+				if (doc.contact_person) {
+					frappe.new_doc('Contract', {
+						document_type: 'Quotation',
+						document_name: doc.name,
+						contract_number: doc.name.replace('BG-TARGET', 'HD-TARGET'),
+						party_type: 'Customer',
+						party_name: doc.party_name,
+						represent_name: doc.represent_name,
+						position: doc.position,
+						contact_mobile: doc.contact_mobile,
+						contact_email: doc.contact_email,
+						cc_mobile: doc.cc_mobile,
+						cc_email: doc.cc_email,
+						year_text: doc.year_text,
+					}, doc => {
+						doc.deadline = 15;
+						doc.report_end_date = to_year + '-12-31';
+						doc.end_year = to_year
+					})
+				}
+				else {
+					this.frm.call("get_customer_doc").then((r) => {
+						var str = JSON.stringify(r);
+						var json = JSON.parse(str);
+						var ref = json.message;
+						frappe.new_doc('Contract', {
+							document_type: 'Quotation',
+							document_name: doc.name,
+							contract_number: doc.name.replace('BG-TARGET', 'HD-TARGET'),
+							party_type: 'Customer',
+							party_name: doc.party_name,
+							represent_name: doc.represent_name,
+							position: doc.position,
+							contact_mobile: ref.mobile_no,
+							contact_email: ref.email_id,
+							cc_mobile: doc.cc_mobile,
+							cc_email: doc.cc_email,
+							year_text: doc.year_text,
+						}, doc => {
+							doc.deadline = 15;
+							doc.report_end_date = to_year + '-12-31';
+							doc.end_year = to_year
+						})
+					});
+				}
 			})
 			
 		};
