@@ -100,6 +100,10 @@
   "contact_display",
   "contact_mobile",
   "contact_email",
+  "section_break_7ynzc",
+  "cc_mobile",
+  "column_break_zqph3",
+  "cc_email",
   "shipping_address_section",
   "shipping_address_name",
   "column_break_81",
@@ -1212,13 +1216,31 @@
    "fieldtype": "Data",
    "label": "Quotation Number",
    "unique": 1
+  },
+  {
+   "fieldname": "section_break_7ynzc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cc_mobile",
+   "fieldtype": "Data",
+   "label": "CC Mobile"
+  },
+  {
+   "fieldname": "column_break_zqph3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cc_email",
+   "fieldtype": "Data",
+   "label": "CC Email"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-06 11:19:39.129987",
+ "modified": "2023-12-25 15:11:15.614727",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",

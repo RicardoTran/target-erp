@@ -62,28 +62,30 @@ frappe.ui.form.on('Quotation', {
 	},
 
 	party_name: function(frm) {
-		if (frm.doc.party_name) {
-			var ref
-			frappe.call({
-				method: "frappe.client.get",
-				args: {
-					doctype: "Customer",
-					name: frm.doc.party_name,
-				},
-				callback: function(r) {
-					if (r && r.message) {
-						let ref = r.message
-						console.log(ref)
-						frm.set_value('represent_name',ref.represent_name)
-						frm.set_value('position',ref.position)
-					}
-				}
-			})
-		}
-		else {
+		if(frm.doc.party_name) {
+			frm.call("get_customer_doc").then((r) => {
+				var str = JSON.stringify(r);
+				var json = JSON.parse(str);
+				var refCustomer = json.message;
+				frm.set_value('represent_name',refCustomer.represent_name)
+				frm.set_value('position',refCustomer.position)
+				//Lay territory
+				frm.call("get_territory_doc").then((r) => {
+					var str = JSON.stringify(r);
+					var json = JSON.parse(str);
+					var refTerritory = json.message;
+					frm.set_value('cc_mobile',refTerritory.mobile)
+					frm.set_value('cc_email',refTerritory.email)
+				})
+			});
+		} else
+		{
 			frm.set_value('represent_name','')
 			frm.set_value('position','')
+			frm.set_value('cc_mobile','')
+			frm.set_value('represent_name','')
 		}
+		frm.refresh()
 	},
 
 	before_workflow_action: (frm) => {
@@ -188,8 +190,9 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 					party_name: doc.party_name,
 					represent_name: doc.represent_name,
 					position: doc.position,
-					contact_mobile: doc.contact_mobile,
-					contact_email: doc.contact_email,
+					//Bỏ copy
+					// contact_mobile: doc.contact_mobile,
+					// contact_email: doc.contact_email,
 					year_text: doc.year_text,
 				}, doc => {
 					doc.deadline = 15;

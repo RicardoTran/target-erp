@@ -21,6 +21,19 @@ class ContractLiquidation(Document):
 		return ref
 	
 	@frappe.whitelist()
+	def get_quotation_doc(self):
+		refContract = frappe.get_doc('Contract',self.contract_number)
+		ref = frappe.get_doc('Quotation',refContract.document_name)
+		return ref
+	
+	@frappe.whitelist()
+	def get_territory_doc(self):
+		refContract = frappe.get_doc('Contract',self.contract_number)
+		refCustomer = frappe.get_doc('Customer',refContract.party_name)
+		ref = frappe.get_doc('Territory',refCustomer.territory)
+		return ref
+	
+	@frappe.whitelist()
 	def update_ref_contract(self):
 		ref = frappe.get_doc('Contract',self.contract_number)
 		if not ref.contract_liquidation:
@@ -62,7 +75,8 @@ class ContractLiquidation(Document):
 
 
 			#Quotation
-			refQuote = frappe.get_doc('Quotation', self.name.replace("BBTL-TARGET", "BG-TARGET"))
+			refContract = frappe.get_doc('Contract',self.contract_number)
+			refQuote = frappe.get_doc('Quotation',refContract.document_name)
 			body = body.replace('{{task_name}}', refQuote.task_description)
 			body = body.replace('{{yyyy}}', refQuote.items[0].year_text)
 
@@ -137,7 +151,8 @@ class ContractLiquidation(Document):
 
 
 			#Quotation
-			refQuote = frappe.get_doc('Quotation', self.name.replace("BBTL-TARGET", "BG-TARGET"))
+			refContract = frappe.get_doc('Contract',self.contract_number)
+			refQuote = frappe.get_doc('Quotation',refContract.document_name)
 			body = body.replace('{{task_name}}', refQuote.task_description)
 			body = body.replace('{{yyyy}}', refQuote.items[0].year_text)
 
