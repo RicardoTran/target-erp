@@ -194,7 +194,7 @@ class Quotation(SellingController):
 			body = body.replace('{{link_name}}', self.name)
 
 			#customer
-			refCongty = frappe.get_doc('Customer', self.customer_name)
+			refCongty = frappe.get_doc('Customer', self.party_name)
 			body = body.replace('{{company_name}}', refCongty.company_name)
 
 			body = body.replace('{{task_name}}', self.task_description)
@@ -265,7 +265,7 @@ class Quotation(SellingController):
 			body = template.body.replace('{{link}}', approval_url)
 
 			#customer
-			refCongty = frappe.get_doc('Customer', self.customer_name)
+			refCongty = frappe.get_doc('Customer', self.party_name)
 			body = body.replace('{{company_name}}', refCongty.company_name)
 
 			body = body.replace('{{task_name}}', self.task_description)
