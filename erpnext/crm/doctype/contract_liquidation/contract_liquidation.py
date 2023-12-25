@@ -21,6 +21,18 @@ class ContractLiquidation(Document):
 		return ref
 	
 	@frappe.whitelist()
+	def get_quotation_doc(self):
+		refContract = frappe.get_doc('Contract',self.contract_number)
+		ref = frappe.get_doc('Quotation',refContract.document_name)
+		return ref
+	
+	@frappe.whitelist()
+	def get_customer_doc(self):
+		refContract = frappe.get_doc('Contract',self.contract_number)
+		ref = frappe.get_doc('Customer',refContract.party_name)
+		return ref
+	
+	@frappe.whitelist()
 	def update_ref_contract(self):
 		ref = frappe.get_doc('Contract',self.contract_number)
 		if not ref.contract_liquidation:
@@ -33,18 +45,34 @@ class ContractLiquidation(Document):
 		str_uuid = str(uuid.uuid4())
 		self.approval_id = str_uuid
 		self.save()
-		if not self.contact_email and not self.contact_mobile:
-			frappe.msgprint(_("Could not find email or mobile phone to send information"))
+		if (not self.contact_email and not self.cc_email):
+			frappe.msgprint(_("Could not find email to send information"))
 		else:
 			# Send Email
 			self.send_contract_liquidation_email()
-			# Send SMS
+
+		if	(not self.contact_mobile and not self.cc_mobile):
+			frappe.msgprint(_("Could not find mobile phone to send information"))
+		else:
+			#Send sms
 			self.send_contract_liquidation_sms()
+
+		# if not self.contact_email and not self.contact_mobile:
+		# 	frappe.msgprint(_("Could not find email or mobile phone to send information"))
+		# else:
+		# 	# Send Email
+		# 	self.send_contract_liquidation_email()
+		# 	# Send SMS
+		# 	self.send_contract_liquidation_sms()
 
 	@frappe.whitelist()
 	def send_contract_liquidation_email(self):
 		# Send Email
-		if self.contact_email:
+		if (not self.contact_email and not self.cc_email):
+			frappe.msgprint(_("Could not find email to send information"))
+		else:
+			list_email = self.contact_email + "," + self.cc_email
+			list_email = list_email.lstrip(',').rstrip(',')
 			if not self.approval_id:
 				str_uuid = str(uuid.uuid4())
 				self.approval_id = str_uuid
@@ -62,7 +90,8 @@ class ContractLiquidation(Document):
 
 
 			#Quotation
-			refQuote = frappe.get_doc('Quotation', self.name.replace("BBTL-TARGET", "BG-TARGET"))
+			refContract = frappe.get_doc('Contract',self.contract_number)
+			refQuote = frappe.get_doc('Quotation',refContract.document_name)
 			body = body.replace('{{task_name}}', refQuote.task_description)
 			body = body.replace('{{yyyy}}', refQuote.items[0].year_text)
 
@@ -89,7 +118,7 @@ class ContractLiquidation(Document):
 				body = body.replace('{{mobile}}', 'Mobiphone: ' + refSign.mobile)
 
 			push_email = frappe.new_doc('Push Email')
-			push_email.to_email = self.contact_email
+			push_email.to_email = list_email
 			push_email.subject = template.subject
 			push_email.body = body
 			push_email.reference_type = "Contract Liquidation"
@@ -105,21 +134,24 @@ class ContractLiquidation(Document):
 					'comment_type': 'Comment',
 					'reference_doctype': 'Contract Liquidation',
 					'reference_name': self.name,
-					'content': 'Đã gửi email thông báo đến: ' + self.contact_email,
+					'content': 'Đã gửi email thông báo đến: ' + list_email,
 				}).insert(ignore_permissions=True)
-				frappe.msgprint('Đã gửi email thông báo đến: ' + self.contact_email)
+				frappe.msgprint('Đã gửi email thông báo đến: ' + list_email)
 				# Update comment flag
 				if self.comment_flag == 1:
 					self.comment_flag = 0
 					self.save()
 			else:
-				frappe.msgprint('Gửi email thất bại.')
-		else:
-			frappe.msgprint(_("Could not find email to send information"))
+				frappe.msgprint('Gửi email đến: ' + list_email + ' thất bại.')
 
 	@frappe.whitelist()
 	def send_contract_liquidation_sms(self):
-		if	self.contact_mobile:
+		if	(not self.contact_mobile and not self.cc_mobile):
+			frappe.msgprint(_("Could not find mobile phone to send information"))
+		else:
+			list_mobile = self.contact_mobile + "," + self.cc_mobile
+			list_mobile = list_mobile.lstrip(',').rstrip(',')
+			arr_mobile = list_mobile.split(",")
 			if not self.approval_id:
 				str_uuid = str(uuid.uuid4())
 				self.approval_id = str_uuid
@@ -137,7 +169,8 @@ class ContractLiquidation(Document):
 
 
 			#Quotation
-			refQuote = frappe.get_doc('Quotation', self.name.replace("BBTL-TARGET", "BG-TARGET"))
+			refContract = frappe.get_doc('Contract',self.contract_number)
+			refQuote = frappe.get_doc('Quotation',refContract.document_name)
 			body = body.replace('{{task_name}}', refQuote.task_description)
 			body = body.replace('{{yyyy}}', refQuote.items[0].year_text)
 
@@ -163,34 +196,34 @@ class ContractLiquidation(Document):
 			else:
 				body = body.replace('{{mobile}}', refSign.mobile)
 
-			push_sms = frappe.new_doc('Push SMS')
-			push_sms.phone_number = self.contact_mobile.replace('0','84', 1).replace(' ','')
-			push_sms.body = body
-			push_sms.unicode_char = 0
-			push_sms.reference_type = "Contract Liquidation"
-			push_sms.reference_name = self.name
-			push_sms.url = approval_url
-			push_sms.insert(ignore_permissions=True)
-			#Check send ok
-			last_push = frappe.get_last_doc('Push SMS')
-			if last_push.result == 1:
-				# Add comments
-				frappe.get_doc({
-					'doctype': 'Comment',
-					'comment_type': 'Comment',
-					'reference_doctype': 'Contract Liquidation',
-					'reference_name': self.name,
-					'content': 'Đã gửi SMS thông báo đến: ' + self.contact_mobile,
-				}).insert(ignore_permissions=True)
-				frappe.msgprint('Đã gửi SMS thông báo đến: ' + self.contact_mobile)
-				# Update comment flag
-				if self.comment_flag == 1:
-					self.comment_flag = 0
-					self.save()
-			else:
-				frappe.msgprint('Gửi SMS thất bại.')
-		else:
-			frappe.msgprint(_("Could not find mobile phone to send information"))
+			for x in arr_mobile:
+				push_sms = frappe.new_doc('Push SMS')
+				push_sms.phone_number = x.replace('0','84', 1).replace(' ','')
+				push_sms.body = body
+				push_sms.unicode_char = 0
+				push_sms.reference_type = "Contract Liquidation"
+				push_sms.reference_name = self.name
+				push_sms.url = approval_url
+				push_sms.insert(ignore_permissions=True)
+				#Check send ok
+				last_push = frappe.get_last_doc('Push SMS')
+				if last_push.result == 1:
+					# Add comments
+					frappe.get_doc({
+						'doctype': 'Comment',
+						'comment_type': 'Comment',
+						'reference_doctype': 'Contract Liquidation',
+						'reference_name': self.name,
+						'content': 'Đã gửi SMS thông báo đến: ' + x,
+					}).insert(ignore_permissions=True)
+					frappe.msgprint('Đã gửi SMS thông báo đến: ' + x)
+					# Update comment flag
+					if self.comment_flag == 1:
+						self.comment_flag = 0
+						self.save()
+				else:
+					frappe.msgprint('Gửi SMS đến số: ' + x + ' thất bại.')
+
 	pass
 def template_to_pdf (doc, event=None):
 
