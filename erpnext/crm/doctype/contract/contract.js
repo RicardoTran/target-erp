@@ -150,7 +150,17 @@ frappe.ui.form.on("Contract", {
 			var json = JSON.parse(str);
 			var ref = json.message;
 			frm.set_value("cc_mobile", ref.mobile);
-			frm.set_value("cc_email", ref.email);
+			frm.call("get_email_global").then((r) => {
+				var list_email =
+					ref.email +
+					"," +
+					frappe.session.user_email +
+					"," +
+					r.message;
+				list_email = list_email.replace("undefined,", "");
+				list_email = list_email.replace("undefined", "");
+				frm.set_value("cc_email", list_email);
+			});
 		});
 	},
 	before_workflow_action: (frm) => {

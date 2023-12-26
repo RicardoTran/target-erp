@@ -33,6 +33,11 @@ class ContractLiquidation(Document):
 		return ref
 	
 	@frappe.whitelist()
+	def get_email_global(self):
+		g_email = frappe.db.get_single_value("Push Email Settings","global_email")
+		return g_email
+	
+	@frappe.whitelist()
 	def get_territory_doc(self):
 		refContract = frappe.get_doc('Contract',self.contract_number)
 		refCustomer = frappe.get_doc('Customer',refContract.party_name)
@@ -126,6 +131,7 @@ class ContractLiquidation(Document):
 
 			push_email = frappe.new_doc('Push Email')
 			push_email.to_email = list_email
+			push_email.reply_to = self.cc_email
 			push_email.subject = template.subject
 			push_email.body = body
 			push_email.reference_type = "Contract Liquidation"

@@ -73,9 +73,14 @@ frappe.ui.form.on('Quotation', {
 				frm.call("get_territory_doc").then((r) => {
 					var str = JSON.stringify(r);
 					var json = JSON.parse(str);
-					var refTerritory = json.message;
-					frm.set_value('cc_mobile',refTerritory.mobile)
-					frm.set_value('cc_email',refTerritory.email)
+					var ref = json.message;
+					frm.set_value('cc_mobile',ref.mobile)
+					frm.call("get_email_global").then((r)=>{
+						var list_email = ref.email + "," + frappe.session.user_email + "," + r.message
+						list_email = list_email.replace("undefined,", "");
+						list_email = list_email.replace("undefined", "");
+						frm.set_value('cc_email',list_email)
+					})
 				})
 			});
 		} else
@@ -127,7 +132,12 @@ frappe.ui.form.on('Quotation', {
 			var json = JSON.parse(str);
 			var ref = json.message;
 			frm.set_value("cc_mobile",ref.mobile)
-			frm.set_value("cc_email",ref.email)
+			frm.call("get_email_global").then((r)=>{
+				var list_email = ref.email + "," + frappe.session.user_email + "," + r.message
+				list_email = list_email.replace("undefined,", "");
+				list_email = list_email.replace("undefined", "");
+				frm.set_value('cc_email',list_email)
+			})
 		})
 	},
 	after_save: function(frm) {
