@@ -122,12 +122,12 @@ class ContractLiquidation(Document):
 			if not refSign.email:
 				body = body.replace('{{email}}', '')
 			else:
-				body = body.replace('{{email}}', 'Email: ' + refSign.email)
+				body = body.replace('{{email}}', refSign.email)
 
 			if not refSign.mobile:
 				body = body.replace('{{mobile}}', '')
 			else:
-				body = body.replace('{{mobile}}', 'Mobiphone: ' + refSign.mobile)
+				body = body.replace('{{mobile}}', refSign.mobile)
 
 			push_email = frappe.new_doc('Push Email')
 			push_email.to_email = list_email
