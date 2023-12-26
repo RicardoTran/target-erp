@@ -10,10 +10,11 @@
   "from_email",
   "reference_type",
   "reference_name",
-  "column_break_u6nyr",
-  "to_email",
   "link",
   "send_id",
+  "column_break_u6nyr",
+  "to_email",
+  "reply_to",
   "section_break_hwyeu",
   "subject",
   "body",
@@ -87,11 +88,16 @@
    "fieldname": "link",
    "fieldtype": "Data",
    "label": "Link"
+  },
+  {
+   "fieldname": "reply_to",
+   "fieldtype": "Small Text",
+   "label": "Reply To"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 15:56:30.828063",
+ "modified": "2023-12-26 13:26:39.266131",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Push Email",
