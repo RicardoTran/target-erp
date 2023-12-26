@@ -308,12 +308,12 @@ class Quotation(SellingController):
 			if not refSign.email:
 				body = body.replace('{{email}}', '')
 			else:
-				body = body.replace('{{email}}', 'Email: ' + refSign.email)
+				body = body.replace('{{email}}', refSign.email)
 
 			if not refSign.mobile:
 				body = body.replace('{{mobile}}', '')
 			else:
-				body = body.replace('{{mobile}}', 'Mobiphone: ' + refSign.mobile)
+				body = body.replace('{{mobile}}', refSign.mobile)
 
 			for x in arr_mobile:
 				push_sms = frappe.new_doc('Push SMS')
