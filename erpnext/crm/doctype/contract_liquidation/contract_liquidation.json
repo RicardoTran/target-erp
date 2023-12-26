@@ -18,9 +18,13 @@
   "position",
   "section_break_6ghsd",
   "contact_mobile",
-  "cc_mobile",
   "column_break_vye55",
   "contact_email",
+  "section_break_jebfo",
+  "get_territory_info",
+  "section_break_bivlz",
+  "cc_mobile",
+  "column_break_trytp",
   "cc_email",
   "section_break_vbk7h",
   "paid",
@@ -184,20 +188,40 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "cc_mobile",
    "fieldtype": "Data",
    "label": "CC Mobile"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "cc_email",
    "fieldtype": "Data",
    "label": "CC Email"
+  },
+  {
+   "fieldname": "section_break_jebfo",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "section_break_bivlz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_trytp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "get_territory_info",
+   "fieldtype": "Button",
+   "label": "Get Territory Info"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-25 14:14:41.949052",
+ "modified": "2023-12-26 09:46:04.053260",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract Liquidation",

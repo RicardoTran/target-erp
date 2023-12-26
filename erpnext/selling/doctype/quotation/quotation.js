@@ -85,7 +85,7 @@ frappe.ui.form.on('Quotation', {
 			frm.set_value('cc_mobile','')
 			frm.set_value('represent_name','')
 		}
-		frm.refresh()
+		// frm.refresh()
 	},
 
 	before_workflow_action: (frm) => {
@@ -120,6 +120,15 @@ frappe.ui.form.on('Quotation', {
 			// }
 		  })
 		frm.reload_doc()	  
+	},
+	get_territory_info: function(frm) {
+		frm.call("get_territory_doc").then((r) => {
+			var str = JSON.stringify(r);
+			var json = JSON.parse(str);
+			var ref = json.message;
+			frm.set_value("cc_mobile",ref.mobile)
+			frm.set_value("cc_email",ref.email)
+		})
 	},
 	after_save: function(frm) {
 		frappe.call({

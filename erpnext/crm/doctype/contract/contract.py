@@ -271,6 +271,13 @@ class Contract(Document):
 		return ref
 	
 	@frappe.whitelist()
+	def get_territory_doc(self):
+		refQuotation = frappe.get_doc('Quotation',self.document_name)
+		refCustomer = frappe.get_doc('Customer',refQuotation.party_name)
+		ref = frappe.get_doc("Territory",refCustomer.territory)
+		return ref
+	
+	@frappe.whitelist()
 	def update_ref_quotation(self):
 		ref = frappe.get_doc('Quotation',self.document_name)
 		if not ref.contract:

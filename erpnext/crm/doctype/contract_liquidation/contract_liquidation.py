@@ -33,6 +33,13 @@ class ContractLiquidation(Document):
 		return ref
 	
 	@frappe.whitelist()
+	def get_territory_doc(self):
+		refContract = frappe.get_doc('Contract',self.contract_number)
+		refCustomer = frappe.get_doc('Customer',refContract.party_name)
+		ref = frappe.get_doc('Territory',refCustomer.territory)
+		return ref
+
+	@frappe.whitelist()
 	def update_ref_contract(self):
 		ref = frappe.get_doc('Contract',self.contract_number)
 		if not ref.contract_liquidation:

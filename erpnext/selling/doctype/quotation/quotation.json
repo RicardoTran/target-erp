@@ -100,6 +100,8 @@
   "contact_display",
   "contact_mobile",
   "contact_email",
+  "section_break_2rvzf",
+  "get_territory_info",
   "section_break_7ynzc",
   "cc_mobile",
   "column_break_zqph3",
@@ -1234,13 +1236,23 @@
    "fieldname": "cc_email",
    "fieldtype": "Data",
    "label": "CC Email"
+  },
+  {
+   "fieldname": "section_break_2rvzf",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "get_territory_info",
+   "fieldtype": "Button",
+   "label": "Get Territory Info"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-25 15:11:15.614727",
+ "modified": "2023-12-26 09:21:32.629425",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
