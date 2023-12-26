@@ -142,7 +142,16 @@ frappe.ui.form.on("Contract", {
 				});
 			}
 		}
-		frm.refresh();
+		// frm.refresh();
+	},
+	get_territory_info: function (frm) {
+		frm.call("get_territory_doc").then((r) => {
+			var str = JSON.stringify(r);
+			var json = JSON.parse(str);
+			var ref = json.message;
+			frm.set_value("cc_mobile", ref.mobile);
+			frm.set_value("cc_email", ref.email);
+		});
 	},
 	before_workflow_action: (frm) => {
 		frappe.dom.unfreeze();

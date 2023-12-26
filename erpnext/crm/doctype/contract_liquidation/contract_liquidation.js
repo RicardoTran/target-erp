@@ -89,7 +89,16 @@ frappe.ui.form.on("Contract Liquidation", {
 				});
 			});
 		}
-		frm.refresh();
+		// frm.refresh();
+	},
+	get_territory_info: function (frm) {
+		frm.call("get_territory_doc").then((r) => {
+			var str = JSON.stringify(r);
+			var json = JSON.parse(str);
+			var ref = json.message;
+			frm.set_value("cc_mobile", ref.mobile);
+			frm.set_value("cc_email", ref.email);
+		});
 	},
 	paid: function (frm) {
 		frm.call("get_quotation_doc").then((r) => {
@@ -98,7 +107,7 @@ frappe.ui.form.on("Contract Liquidation", {
 			var ref = json.message;
 			frm.set_value("remaining", ref.grand_total - frm.doc.paid);
 		});
-		frm.refresh();
+		// frm.refresh();
 	},
 	before_workflow_action: (frm) => {
 		frappe.dom.unfreeze();
