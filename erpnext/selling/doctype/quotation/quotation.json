@@ -802,7 +802,8 @@
    "oldfieldtype": "Link",
    "options": "Terms and Conditions",
    "print_hide": 1,
-   "report_hide": 1
+   "report_hide": 1,
+   "reqd": 1
   },
   {
    "fieldname": "terms",
@@ -1204,7 +1205,8 @@
    "fieldname": "task_template",
    "fieldtype": "Link",
    "label": "Task Template",
-   "options": "Job Description"
+   "options": "Job Description",
+   "reqd": 1
   },
   {
    "default": "A Vi\u1ec7t",
@@ -1252,7 +1254,7 @@
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-26 09:21:32.629425",
+ "modified": "2023-12-27 14:32:34.804572",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
