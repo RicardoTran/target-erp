@@ -83,7 +83,7 @@ class ContractLiquidation(Document):
 		if (not self.contact_email and not self.cc_email):
 			frappe.msgprint(_("Could not find email to send information"))
 		else:
-			list_email = self.contact_email + "," + self.cc_email
+			list_email = (self.contact_email or '') + "," + (self.cc_email or '')
 			list_email = list_email.lstrip(',').rstrip(',')
 			if not self.approval_id:
 				str_uuid = str(uuid.uuid4())
@@ -162,7 +162,7 @@ class ContractLiquidation(Document):
 		if	(not self.contact_mobile and not self.cc_mobile):
 			frappe.msgprint(_("Could not find mobile phone to send information"))
 		else:
-			list_mobile = self.contact_mobile + "," + self.cc_mobile
+			list_mobile = (self.contact_mobile or '')+ "," + (self.cc_mobile or '')
 			list_mobile = list_mobile.lstrip(',').rstrip(',')
 			arr_mobile = list_mobile.split(",")
 			if not self.approval_id:
