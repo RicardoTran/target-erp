@@ -20,7 +20,9 @@ class PushEmail(Document):
 		from_email = frappe.db.get_single_value("Push Email Settings","from_email")
 
 		to_email = self.to_email.replace(" ", "").strip().split(",")
-		reply_to = self.reply_to.replace(" ", "").strip().split(",")
+		reply_to = frappe.db.get_single_value("Push Email Settings","global_email")
+		if self.reply_to:
+			reply_to = self.reply_to.replace(" ", "").strip().split(",")
 
 		#Send email
 		url = "https://api.resend.com/emails"
