@@ -1,7 +1,7 @@
 # Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 # License: GNU General Public License v3. See license.txt
 
-
+import frappe
 from frappe import _
 
 from erpnext.controllers.trends import get_columns, get_data
@@ -15,8 +15,8 @@ def execute(filters=None):
 	data = get_data(filters, conditions)
 
 	chart_data = get_chart_data(data, conditions, filters)
-
-	return conditions["columns"], data, None, chart_data
+	report_summary = get_total_amt(data,filters)
+	return conditions["columns"], data, None, chart_data, report_summary
 
 
 def get_chart_data(data, conditions, filters):
@@ -54,5 +54,18 @@ def get_chart_data(data, conditions, filters):
 		},
 		"type": "line",
 		"lineOptions": {"regionFill": 1},
-		"fieldtype": "Currency",
+		"fieldtype": "Currency"
 	}
+
+def get_total_amt(data, filters):
+	if not data:
+		return[{"value": 0, "label": _("Total"), "datatype": "Currency"}]
+	
+	total_value = 0
+
+	for row in data:
+		index = len(row) - 1
+		total_value += row[index]
+	if filters.get("group_by"):
+		total_value = total_value/2
+	return[{"value": total_value, "label": _("Total"), "datatype": "Currency"}]
