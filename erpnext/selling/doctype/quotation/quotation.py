@@ -459,7 +459,7 @@ class Quotation(SellingController):
 		mm_yyyy = datetime.today().strftime("%m-%Y")
 		searchStr = '%' + mm_yyyy + '/BG-TARGET'
 		result = frappe.db.sql(f"""SELECT Max(name) as QuoteNum FROM `tabQuotation` WHERE `name` LIKE '{searchStr}'""")
-		if result == '((None,),)':
+		if str(result) == '((None,),)':
 			return "0001" + '-' + mm_yyyy + '/BG-TARGET'
 		else:
 			return str(int(str(result)[3:7])+1).zfill(4) + '-' + mm_yyyy + '/BG-TARGET'
