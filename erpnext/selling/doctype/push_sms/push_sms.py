@@ -18,15 +18,16 @@ class PushSMS(Document):
 		login_user = frappe.db.get_single_value("Push SMS Settings","user_name")
 		login_pass = get_decrypted_password("Push SMS Settings","Push SMS Settings","password")
 		service_id = frappe.db.get_single_value("Push SMS Settings","service_id")
-		body = remove_accents(self.body)
-
+		# body = remove_accents(self.body)
+		body = self.body
+		unicode = str(self.unicode_char)
 		#Send SMS
 		url = "https://ams.tinnhanthuonghieu.vn:8998/bulkapi?wsdl"
-		payload = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:impl=\"http://impl.bulkSms.ws/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <impl:wsCpMt>\n         <!--Optional:-->\n         <User>" + login_user + "</User>\n         <!--Optional:-->\n         <Password>" + login_pass + "</Password>\n         <!--Optional:-->\n         <CPCode>" + service_id + "</CPCode>\n         <!--Optional:-->\n         <RequestID>1</RequestID>\n         <!--Optional:-->\n         <UserID>" + self.phone_number + "</UserID>\n         <!--Optional:-->\n         <ReceiverID>" + self.phone_number + "</ReceiverID>\n         <!--Optional:-->\n         <ServiceID>" + service_id + "</ServiceID>\n         <!--Optional:-->\n         <CommandCode>bulksms</CommandCode>\n         <!--Optional:-->\n         <Content>" + body + "</Content>\n         <!--Optional:-->\n         <ContentType>" + str(self.unicode_char) + "</ContentType>\n      </impl:wsCpMt>\n   </soapenv:Body>\n</soapenv:Envelope>\n"
+		payload = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.bulkSms.ws/"><soapenv:Header/><soapenv:Body><impl:wsCpMt><User>'+login_user+'</User><Password>'+login_pass+'</Password><CPCode>'+service_id+'</CPCode><RequestID>1</RequestID><UserID>'+self.phone_number+'</UserID><ReceiverID>'+self.phone_number+'</ReceiverID><ServiceID>'+service_id+'</ServiceID><CommandCode>bulksms</CommandCode><Content>'+body+'</Content><ContentType>'+unicode+'</ContentType></impl:wsCpMt></soapenv:Body></soapenv:Envelope>'
 		headers = {
-			'Content-Type': 'text/xml'
+			'Content-Type': 'text/xml; charset=utf-8'
 		}
-		response = requests.request("POST", url, headers=headers, data=payload, )
+		response = requests.request("POST", url, headers=headers, data=payload.encode('utf-8'), )
 
 		frappe.get_doc({
 			'doctype': 'Comment',

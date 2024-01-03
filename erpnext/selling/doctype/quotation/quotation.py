@@ -319,7 +319,7 @@ class Quotation(SellingController):
 				push_sms = frappe.new_doc('Push SMS')
 				push_sms.phone_number = x.replace('0','84', 1).replace(' ','')
 				push_sms.body = body
-				push_sms.unicode_char = 0
+				push_sms.unicode_char = 1
 				push_sms.reference_type = "Quotation"
 				push_sms.reference_name = self.name
 				push_sms.url = approval_url
