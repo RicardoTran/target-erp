@@ -163,6 +163,15 @@ frappe.ui.form.on("Contract", {
 			});
 		});
 	},
+	get_primary_contact: function (frm) {
+		frm.call("get_customer_doc").then((r) => {
+			var str = JSON.stringify(r);
+			var json = JSON.parse(str);
+			var ref = json.message;
+			frm.set_value("contact_mobile", ref.mobile_no);
+			frm.set_value("contact_email", ref.email_id);
+		});
+	},
 	before_workflow_action: (frm) => {
 		frappe.dom.unfreeze();
 		if (frm.doc.workflow_state == "Draft") {
