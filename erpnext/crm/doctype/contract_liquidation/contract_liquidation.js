@@ -110,6 +110,15 @@ frappe.ui.form.on("Contract Liquidation", {
 			});
 		});
 	},
+	get_primary_contact: function (frm) {
+		frm.call("get_customer_doc").then((r) => {
+			var str = JSON.stringify(r);
+			var json = JSON.parse(str);
+			var refCustomer = json.message;
+			frm.set_value("contact_mobile", refCustomer.mobile_no);
+			frm.set_value("contact_email", refCustomer.email_id);
+		});
+	},
 	paid: function (frm) {
 		frm.call("get_quotation_doc").then((r) => {
 			var str = JSON.stringify(r);
