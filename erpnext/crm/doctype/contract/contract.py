@@ -344,7 +344,9 @@ def template_to_pdf (doc, event=None):
 	progress.percent = 66
 	publish_progress(**progress)
 
-	file_name = doc.name.replace("/","-") + "-.pdf"
+	strAdd = frappe.db.get_value("Customer", doc.party_name, "customer_name")
+
+	file_name = doc.name.replace("/","-") + "-" + strAdd.replace(" ","-") + "-.pdf"
 	save_file(file_name, pdf_data, doc.doctype, doc.name, folder= "Home", is_private = 1, df = "unsigned_file")
 	attach_file = frappe.get_last_doc("File")
 	
