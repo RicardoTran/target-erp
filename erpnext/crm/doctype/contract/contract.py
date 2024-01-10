@@ -30,6 +30,7 @@ class Contract(Document):
 		self.validate_dates()
 		self.update_contract_status()
 		self.update_fulfilment_status()
+		self.set_party_name_ref()
 
 	def before_submit(self):
 		self.signed_by_company = frappe.session.user
@@ -289,6 +290,16 @@ class Contract(Document):
 		if not ref.contract:
 			ref.contract = self.name
 			ref.save(ignore_permissions=True)
+
+	def set_party_name_ref(self):
+		if self.party_name and self.party_type == "Customer":
+			self.party_name_ref = frappe.db.get_value("Customer", self.party_name, "customer_name")
+		if self.party_name and self.party_type == "Supplier":
+			self.party_name_ref = frappe.db.get_value("Supplier", self.party_name, "supplier_name")
+		if self.party_name and self.party_type == "Employee":
+			f_name, l_name = frappe.db.get_value("Employee", self.party_name, ["first_name","last_name"])
+			self.party_name_ref = f_name + ' ' + l_name
+	
 
 def get_status(start_date, end_date):
 	"""

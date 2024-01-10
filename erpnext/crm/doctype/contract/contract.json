@@ -71,7 +71,8 @@
   "amended_from",
   "comment_flag",
   "year_text",
-  "end_year"
+  "end_year",
+  "party_name_ref"
  ],
  "fields": [
   {
@@ -98,8 +99,6 @@
   {
    "fieldname": "party_name",
    "fieldtype": "Dynamic Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Party Name",
    "options": "party_type",
    "reqd": 1
@@ -117,7 +116,6 @@
    "fieldtype": "Select",
    "hidden": 1,
    "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
    "options": "Unsigned\nActive\nInactive"
@@ -288,6 +286,8 @@
    "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Date",
    "reqd": 1
   },
@@ -466,11 +466,20 @@
    "fieldname": "get_primary_contact",
    "fieldtype": "Button",
    "label": "Get Primary Contact"
+  },
+  {
+   "fieldname": "party_name_ref",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_global_search": 1,
+   "in_standard_filter": 1,
+   "label": "Party Name",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-04 17:49:49.911281",
+ "modified": "2024-01-10 10:27:48.610254",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",
@@ -568,6 +577,7 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "party_name_ref",
  "track_changes": 1,
  "track_seen": 1
 }
