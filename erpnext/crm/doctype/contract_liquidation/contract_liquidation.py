@@ -11,6 +11,9 @@ from frappe.utils import getdate, nowdate
 from frappe.model.document import Document
 
 class ContractLiquidation(Document):
+	def validate(self):
+		self.customer_name = frappe.db.get_value("Customer", self.customer, "customer_name")
+
 	@frappe.whitelist()
 	def attach_pdf(doc, event=None):
 		template_to_pdf(doc, event=None)

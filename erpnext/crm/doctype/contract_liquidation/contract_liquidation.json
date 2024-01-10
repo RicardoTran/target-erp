@@ -41,7 +41,8 @@
   "signed_file",
   "references_section",
   "approval_id",
-  "comment_flag"
+  "comment_flag",
+  "customer_name"
  ],
  "fields": [
   {
@@ -54,7 +55,6 @@
   {
    "fieldname": "customer",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Customer",
    "options": "Customer",
    "reqd": 1
@@ -73,6 +73,7 @@
    "fieldname": "date",
    "fieldtype": "Date",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Date",
    "reqd": 1
   },
@@ -229,12 +230,21 @@
    "fieldname": "get_primary_contact",
    "fieldtype": "Button",
    "label": "Get Primary Contact"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_global_search": 1,
+   "in_standard_filter": 1,
+   "label": "Customer Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-04 17:52:10.169606",
+ "modified": "2024-01-10 11:17:17.799896",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract Liquidation",
@@ -292,5 +302,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "customer_name"
 }
