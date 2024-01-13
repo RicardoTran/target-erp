@@ -195,6 +195,7 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 		if(doc.workflow_state == "Approved" && !doc.contract) {
 			this.frm.add_custom_button(__("Create Contract"), () => {
 				var to_year = doc.items[0].to_year
+				var total = doc.grand_total
 				if (doc.contact_person) {
 					frappe.new_doc('Contract', {
 						document_type: 'Quotation',
@@ -212,6 +213,7 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 					}, doc => {
 						doc.deadline = 15;
 						doc.report_end_date = to_year + '-12-31';
+						doc.total = total,
 						doc.end_year = to_year
 					})
 				}
@@ -236,6 +238,7 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 						}, doc => {
 							doc.deadline = 15;
 							doc.report_end_date = to_year + '-12-31';
+							doc.total = total,
 							doc.end_year = to_year
 						})
 					});
