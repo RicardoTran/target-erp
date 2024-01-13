@@ -97,6 +97,7 @@ frappe.ui.form.on("Contract", {
 			frm.set_value("party_type", "Customer");
 			frm.set_value("party_name", "");
 			frm.set_value("report_end_date", "");
+			frm.set_value("total", 0);
 			frm.set_value("deadline", "");
 			frm.set_value("represent_name", "");
 			frm.set_value("position", "");
@@ -121,6 +122,7 @@ frappe.ui.form.on("Contract", {
 						"report_end_date",
 						ref.items[0].to_year + "-12-31"
 					);
+					frm.set_value("total", ref.grand_total);
 					frm.set_value("deadline", 15);
 					frm.set_value("represent_name", ref.represent_name);
 					frm.set_value("position", ref.position);

@@ -12,6 +12,7 @@
   "contract_number",
   "date",
   "report_end_date",
+  "total",
   "is_signed",
   "cb_party",
   "document_name",
@@ -475,11 +476,18 @@
    "in_standard_filter": 1,
    "label": "Party Name",
    "read_only": 1
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-10 10:27:48.610254",
+ "modified": "2024-01-12 23:12:46.753143",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",
