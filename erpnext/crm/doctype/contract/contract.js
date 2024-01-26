@@ -98,6 +98,7 @@ frappe.ui.form.on("Contract", {
 			frm.set_value("party_name", "");
 			frm.set_value("report_end_date", "");
 			frm.set_value("total", 0);
+			frm.set_value("grand_total", 0);
 			frm.set_value("deadline", "");
 			frm.set_value("represent_name", "");
 			frm.set_value("position", "");
