@@ -122,7 +122,8 @@ frappe.ui.form.on("Contract", {
 						"report_end_date",
 						ref.items[0].to_year + "-12-31"
 					);
-					frm.set_value("total", ref.grand_total);
+					frm.set_value("total", ref.total);
+					frm.set_value("grand_total", ref.grand_total);
 					frm.set_value("deadline", 15);
 					frm.set_value("represent_name", ref.represent_name);
 					frm.set_value("position", ref.position);
