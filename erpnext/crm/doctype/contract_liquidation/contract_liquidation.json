@@ -178,6 +178,7 @@
   {
    "fieldname": "paid",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Paid"
   },
   {
@@ -187,6 +188,7 @@
   {
    "fieldname": "remaining",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Remaining",
    "read_only": 1
   },
@@ -244,7 +246,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-10 11:17:17.799896",
+ "modified": "2024-01-26 23:02:41.095663",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract Liquidation",
