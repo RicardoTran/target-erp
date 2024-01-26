@@ -214,6 +214,7 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 						doc.deadline = 15;
 						doc.report_end_date = to_year + '-12-31';
 						doc.total = total,
+						doc.grand_total = grand_total,
 						doc.end_year = to_year
 					})
 				}
@@ -239,6 +240,7 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 							doc.deadline = 15;
 							doc.report_end_date = to_year + '-12-31';
 							doc.total = total,
+							doc.grand_total = grand_total,
 							doc.end_year = to_year
 						})
 					});
