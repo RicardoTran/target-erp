@@ -18,6 +18,7 @@
   "document_name",
   "party_type",
   "party_name",
+  "grand_total",
   "deadline",
   "party_user",
   "status",
@@ -483,11 +484,18 @@
    "in_list_view": 1,
    "label": "Total",
    "read_only": 1
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Grand Total",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-12 23:12:46.753143",
+ "modified": "2024-01-26 18:55:01.552359",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract",

@@ -357,7 +357,8 @@ class Quotation(SellingController):
 		ct.party_type = "Customer"
 		ct.party_name = self.party_name
 		ct.report_end_date = date(to_year,12,31)
-		ct.total = self.grand_total
+		ct.total = self.total
+		ct.grand_total = self.grand_total
 		ct.deadline = 15
 		ct.represent_name = self.represent_name
 		ct.position = self.position
