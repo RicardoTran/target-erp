@@ -50,10 +50,16 @@ frappe.ui.form.on('Quotation', {
 	onload: function(frm) {
 		//Set so bao gia
 		if (frm.is_new()) {
+			frm.set_value('invoice','Xuất hóa đơn');
 			frm.call("make_quotation_number").then((r) =>{
 				frm.set_value("quotation_number",r.message)
 			});
 		}
+	},
+	invoice: function(frm) {
+		frm.call("make_quotation_number").then((r) =>{
+			frm.set_value("quotation_number",r.message)
+		});
 	},
 	quotation_to: function(frm) {
 		frm.trigger("set_label");
