@@ -12,6 +12,7 @@
  "field_order": [
   "customer_section",
   "title",
+  "invoice",
   "quotation_number",
   "naming_series",
   "quotation_to",
@@ -1247,13 +1248,19 @@
    "fieldname": "get_territory_info",
    "fieldtype": "Button",
    "label": "Get Territory Info"
+  },
+  {
+   "fieldname": "invoice",
+   "fieldtype": "Select",
+   "label": "Invoice",
+   "options": "Xu\u1ea5t h\u00f3a \u0111\u01a1n\nKh\u00f4ng xu\u1ea5t h\u00f3a \u0111\u01a1n"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-26 22:46:56.476132",
+ "modified": "2024-01-30 21:53:08.314542",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",

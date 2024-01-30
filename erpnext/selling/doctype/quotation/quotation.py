@@ -458,14 +458,19 @@ class Quotation(SellingController):
 
 	@frappe.whitelist()
 	def	make_quotation_number(doc, event=None):
-		mm_yyyy = datetime.today().strftime("%m-%Y")
-		searchStr = '%' + mm_yyyy + '/BG-TARGET'
+		if doc.invoice == 'Xuất hóa đơn':
+			mm_yyyy = datetime.today().strftime("%m-%Y")
+			str_mm_yyyy = "-" + mm_yyyy
+		else:
+			mm_yyyy = datetime.today().strftime("%m%Y")
+			str_mm_yyyy = mm_yyyy
+		searchStr = '%' + mm_yyyy + '/BG-TARGET' + '%'
 		result = frappe.db.sql(f"""SELECT Max(name) as QuoteNum FROM `tabQuotation` WHERE `name` LIKE '{searchStr}'""")
 		if str(result) == '((None,),)':
-			return "0001" + '-' + mm_yyyy + '/BG-TARGET'
+			return "0001" + str_mm_yyyy + '/BG-TARGET'
 		else:
-			return str(int(str(result)[3:7])+1).zfill(4) + '-' + mm_yyyy + '/BG-TARGET'
-	
+			return str(int(str(result)[3:7])+1).zfill(4) + str_mm_yyyy + '/BG-TARGET'
+			
 	@frappe.whitelist()
 	def update_in_words(doc, event=None):
 		words_vn = num2words(doc.grand_total, lang='vi').capitalize()+" đồng"
