@@ -246,7 +246,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-26 23:02:41.095663",
+ "modified": "2024-02-02 17:00:24.370959",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Contract Liquidation",
@@ -263,6 +263,7 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   },
   {
@@ -275,6 +276,7 @@
    "report": 1,
    "role": "Sales Master Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   },
   {
@@ -287,6 +289,7 @@
    "report": 1,
    "role": "Sales Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   },
   {
@@ -299,6 +302,7 @@
    "report": 1,
    "role": "Sales User",
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
