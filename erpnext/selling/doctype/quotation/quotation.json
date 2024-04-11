@@ -735,7 +735,6 @@
   {
    "fieldname": "rounding_adjustment",
    "fieldtype": "Currency",
-   "hidden": 1,
    "label": "Rounding Adjustment",
    "no_copy": 1,
    "options": "currency",
@@ -744,10 +743,8 @@
   },
   {
    "bold": 1,
-   "depends_on": "0 == 1",
    "fieldname": "rounded_total",
    "fieldtype": "Currency",
-   "hidden": 1,
    "label": "Rounded Total",
    "oldfieldname": "rounded_total_export",
    "oldfieldtype": "Currency",
@@ -756,10 +753,8 @@
    "width": "200px"
   },
   {
-   "depends_on": "0",
    "fieldname": "in_words",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "In Words",
    "length": 240,
    "oldfieldname": "in_words_export",
@@ -1103,6 +1098,7 @@
    "label": "Named Place"
   },
   {
+   "allow_on_submit": 1,
    "default": "Ch\u01b0a bao g\u1ed3m",
    "fieldname": "tax_include",
    "fieldtype": "Select",
@@ -1191,6 +1187,7 @@
   {
    "fieldname": "in_words_vn",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "In Words",
    "read_only": 1
   },
@@ -1250,6 +1247,7 @@
    "label": "Get Territory Info"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "invoice",
    "fieldtype": "Select",
    "label": "Invoice",
@@ -1260,7 +1258,7 @@
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-30 21:53:08.314542",
+ "modified": "2024-04-11 16:34:31.467768",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
