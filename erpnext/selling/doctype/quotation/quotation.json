@@ -441,6 +441,7 @@
   },
   {
    "allow_bulk_edit": 1,
+   "allow_on_submit": 1,
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
@@ -555,6 +556,7 @@
    "hide_border": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "taxes_and_charges",
    "fieldtype": "Link",
    "label": "Sales Taxes and Charges Template",
@@ -564,6 +566,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "taxes",
    "fieldtype": "Table",
    "label": "Sales Taxes and Charges",
@@ -1258,7 +1261,7 @@
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-11 16:46:33.174173",
+ "modified": "2024-04-12 10:41:06.253189",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",
