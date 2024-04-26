@@ -275,6 +275,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "price_list_rate",
    "fieldname": "discount_percentage",
    "fieldtype": "Percent",
@@ -286,6 +287,7 @@
    "width": "100px"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "price_list_rate",
    "fieldname": "discount_amount",
    "fieldtype": "Currency",
@@ -709,7 +711,7 @@
  "idx": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-26 14:01:46.024173",
+ "modified": "2024-04-26 14:09:27.572603",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation Item",
