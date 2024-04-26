@@ -244,6 +244,7 @@
    "label": "Discount and Margin"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "price_list_rate",
    "fieldname": "margin_type",
    "fieldtype": "Select",
@@ -708,7 +709,7 @@
  "idx": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-26 13:52:25.679673",
+ "modified": "2024-04-26 14:01:46.024173",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation Item",
